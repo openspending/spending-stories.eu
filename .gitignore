@@ -41,3 +41,4 @@ jspm_packages
 
 # Some project-specific files
 config.json
+nbproject/

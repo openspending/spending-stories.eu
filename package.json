@@ -40,7 +40,7 @@
     "zombie": "^4.2.1"
   },
   "scripts": {
-    "start": "xdg-open index.html",
+    "start": "start index.html",
     "test": "mocha tests/*.js",
     "review": "jscs app tests",
     "build": "gulp"

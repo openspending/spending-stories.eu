@@ -36,63 +36,63 @@ gulp.task('default', [
   'vendor.fonts'
 ]);
 
-gulp.task('app.scripts', function() {
+gulp.task('app.scripts', function () {
   var bundler = browserify({
     standalone: 'application'
   })
-  .transform(stringify, {
-    appliesTo: {
-      includeExtensions: ['.html']
-    },
-    minify: false
-  });
+          .transform(stringify, {
+            appliesTo: {
+              includeExtensions: ['.html']
+            },
+            minify: false
+          });
 
   bundler.require(resolve.sync(frontScriptsDir), {expose: 'application'});
 
   return bundler.bundle()
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    //.pipe(uglify())
-    .pipe(gulp.dest(publicScriptsDir));
+          .pipe(source('app.js'))
+          .pipe(buffer())
+          //.pipe(uglify())
+          .pipe(gulp.dest(publicScriptsDir));
 });
 
-gulp.task('app.styles', function() {
+gulp.task('app.styles', function () {
   var files = [
     path.join(frontStylesDir, '/styles.less')
   ];
   return gulp.src(files)
-    .pipe(sourcemaps.init())
-    .pipe(less())
-    .pipe(prefixer({browsers: ['last 4 versions']}))
-    .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(concat('app.css'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest(publicStylesDir));
+          .pipe(sourcemaps.init())
+          .pipe(less())
+          .pipe(prefixer({browsers: ['last 4 versions']}))
+          .pipe(minifyCss({compatibility: 'ie8'}))
+          .pipe(concat('app.css'))
+          .pipe(sourcemaps.write())
+          .pipe(gulp.dest(publicStylesDir));
 });
 
-gulp.task('app.assets', function() {
+gulp.task('app.assets', function () {
   return gulp.src([
-      path.join(nodeModulesDir, '/os-bootstrap/dist/assets/os-branding/vector/light/os.svg')
-    ])
-    .pipe(gulp.dest(publicAssetsDir));
+    path.join(frontSrcDir, '/images/adessium-foundation-white-375x93.png'),
+    path.join(nodeModulesDir, '/os-bootstrap/dist/assets/os-branding/vector/light/os.svg')
+  ])
+          .pipe(gulp.dest(publicAssetsDir));
 });
 
-gulp.task('vendor.styles', function() {
+gulp.task('vendor.styles', function () {
   var files = [
     path.join(nodeModulesDir, '/font-awesome/css/font-awesome.min.css'),
-    path.join(nodeModulesDir, '/os-bootstrap/dist/css/os-bootstrap.min.css'),
     path.join(nodeModulesDir, '/angular/angular-csp.css')
   ];
   return gulp.src(files)
-    .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(publicStylesDir));
+          .pipe(concat('vendor.css'))
+          .pipe(gulp.dest(publicStylesDir));
 });
 
-gulp.task('vendor.fonts', function() {
+gulp.task('vendor.fonts', function () {
   var files = [
     path.join(nodeModulesDir, '/font-awesome/fonts/*'),
     path.join(nodeModulesDir, '/os-bootstrap/dist/fonts/*')
   ];
   return gulp.src(files)
-    .pipe(gulp.dest(publicFontsDir));
+          .pipe(gulp.dest(publicFontsDir));
 });

@@ -1,0 +1,250 @@
+//
+// SubsidyStories.eu
+// Version: 1.0
+// Author: Goce Mitevski
+//
+// =============================================================================
+// Main
+// =============================================================================
+
+.reset-link-color{
+  a{
+    color: inherit;
+  }
+}
+
+.main-content{
+  margin-top: @grid-gutter-width;
+  margin-bottom: @grid-gutter-width;
+}
+
+.hero-map{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+
+  svg {
+    background-color: white;
+  }
+
+  path:hover {
+    fill: @colour-map-hover;
+    cursor: pointer;
+  }
+
+}
+
+.hero-title{
+  margin: 0;
+  text-align: center;
+  line-height: 0.9;
+  font-size: @font-size-h2 * 1.5;
+
+  @media (max-width: @screen-md-max){
+    padding: @grid-gutter-width;
+  }
+
+  @media (min-width: @screen-lg-min){
+    position: absolute;
+    top: 40%;
+    left: @hero-nav-left;
+  }
+
+  .text-polo-blue{
+    font-size: @font-size-h1 * 2;
+    @media (min-width: @screen-lg-min){
+      position: relative;
+      top: @grid-gutter-width/6;
+      left: (@grid-gutter-width/3) + 3;
+    }
+  }
+}
+
+.hero-nav{
+
+  font-size: @hero-nav-font-size;
+
+  @media (min-width: @screen-lg-min){
+    position: absolute;
+    top: 5%;
+    left: @hero-nav-left*2;
+  }
+
+}
+
+.list-hero-nav{
+  .reset-link-color;
+
+  padding-left: 0;
+
+  @media (max-width: @screen-md-max){
+    text-align: center;
+    padding: @grid-gutter-width/2;
+    margin-bottom: 0;
+    background: lighten(@colour-gray-light, 20%);
+  }
+
+  li{
+    display: inline-block;
+    padding-right: 3rem;
+
+    a{
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.list-country{
+  .list-unstyled;
+  .reset-link-color;
+
+  margin: @grid-gutter-width 0;
+  padding-left: (@grid-gutter-width*2)-10;
+  font-size: @font-size-h3;
+  border-left: @list-border;
+  font-style: italic;
+}
+
+.list-lg{
+  font-size: 2rem;
+}
+
+.list-footer{
+  .list-unstyled;
+  .reset-link-colorч
+
+  li{
+    line-height: 1.1;
+    margin: @grid-gutter-width/3 0;
+  }
+}
+
+.text-polo-blue{
+  color: @colour-polo-blue;
+}
+
+.text-picton-blue{
+  color: @colour-picton-blue;
+}
+
+.text-gray-light{
+  color: @gray-light;
+}
+
+.text-block{
+  display: block;
+}
+
+blockquote{
+  &:before,
+    &:after{
+    display: inline-block;
+  }
+  &:before{
+    content: "“";
+    margin-right: @grid-gutter-width/6;
+
+  }
+  &:after{
+    margin-left: @grid-gutter-width/6;
+    content: "”";
+  }
+}
+
+cite{
+  &:before{
+    content: '-';
+    display: inline-block;
+    margin-right: @grid-gutter-width/6;
+  }
+}
+
+.content-years{
+  font-size: @font-size-h3;
+  color: @gray-light;
+  margin: @grid-gutter-width/2 0 @grid-gutter-width/2 (@grid-gutter-width*2)-10;
+}
+
+.content-intro{
+  margin-bottom: @grid-gutter-width*3;
+}
+
+.content-block{
+  .reset-link-color;
+}
+
+.content-block-title-thin{
+  font-weight: 500;
+}
+
+.content-header{
+  .reset-link-color;
+  margin-bottom: @grid-gutter-width;
+}
+
+.content-header-title{
+  margin-top: 0;
+}
+
+.content-grid{
+
+  .row{
+
+    &:last-child{
+      > div{
+        border-bottom: none;
+      }
+    }
+
+    > div{
+      border-bottom: @list-border;
+
+      @media (min-width: @screen-md-min){
+        &:nth-child(2n+1){
+          border-right: @list-border;
+        }
+      }
+    }
+  }
+}
+
+.content-grid-item{
+  min-height: 30rem;
+  padding: @grid-gutter-width/3;
+}
+
+.content-grid-item-xl{
+
+  h2{
+    font-size: 6rem;
+  }
+
+  p{
+    font-size: 2rem;
+  }
+
+}
+
+.img-center{
+  margin: 0 auto;
+}
+
+.main-footer{
+  padding: @grid-gutter-width*2 0 @grid-gutter-width;
+
+  @media (max-width: @screen-sm-max){
+    padding-bottom: 0;
+    text-align: center;
+
+    .content-block{
+      margin: @grid-gutter-width 0;
+    }
+  }
+
+  .content-block-title{
+    margin-top: 0;
+    margin-bottom: @grid-gutter-width - 10;
+  }
+}
