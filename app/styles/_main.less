@@ -22,6 +22,9 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  @media (min-width: @screen-md-min){
+    min-height: 100vh;
+  }
   height: auto;
 
   svg {
@@ -31,6 +34,10 @@
   path:hover {
     fill: @colour-map-hover;
     cursor: pointer;
+  }
+
+  .selected{
+    fill: @colour-map-hover;
   }
 
 }
@@ -68,7 +75,7 @@
   @media (min-width: @screen-lg-min){
     position: absolute;
     top: 5%;
-    left: @hero-nav-left*2;
+    left: @hero-nav-left + 2;
   }
 
 }
