@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>SubsidyStories.eu</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <title>OpenSpending</title>
+
+    <link rel="stylesheet" href="public/styles/vendor.css">
+    <link rel="stylesheet" href="public/styles/app.css">
+    <base href="admin"/>
   </head>
   <body>
+
+    <!-- Static mockup code START -->
     <div class="hero-map">
       <h1 class="hero-title"><span class="text-polo-blue text-block">subsidy</span><span>stories</span><span class="text-picton-blue">.eu</span></h1>
       <nav class="hero-nav">
@@ -143,10 +147,13 @@
         </div>
       </footer>
     </div>
+    <!-- Static mockup code END -->
 
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="//d3js.org/topojson.v1.min.js"></script>
-    <script src="js/d3-map-europe.js"></script>
+    <!-- Google Web Font Loader -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+
+    <!-- Angular app specific scripts -->
+    <script src="public/scripts/app.js"></script>
+
   </body>
 </html>
