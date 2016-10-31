@@ -107,11 +107,44 @@
   .list-unstyled;
   .reset-link-color;
 
+  .active{
+    text-decoration: underline;
+  }
+
   margin: @grid-gutter-width 0;
   padding-left: (@grid-gutter-width*2)-10;
   font-size: @font-size-h3;
   border-left: @list-border;
   font-style: italic;
+}
+
+.list-country-icons{
+  font-size: @grid-gutter-width + 2;
+  @media (min-width: @screen-md-min){
+    text-align: right;
+  }
+
+  a{
+    &:hover{
+      color: @colour-picton-blue;
+      text-decoration: none;
+    }
+  }
+}
+
+.list-select{
+
+  .active{
+    font-weight: 700;
+    color: @colour-picton-blue;
+  }
+
+}
+
+.list-download{
+  @media (min-width: @screen-sm-min){
+    text-align: right;
+  }
 }
 
 .list-lg{
@@ -180,6 +213,19 @@ cite{
 
 .content-block{
   .reset-link-color;
+
+  .table{
+    margin: @grid-gutter-width 0;
+  }
+
+  .list-select{
+
+    font-size: @font-size-large;
+
+    a{
+      text-decoration: underline;
+    }
+  }
 }
 
 .content-block-title-thin{
@@ -253,5 +299,12 @@ cite{
   .content-block-title{
     margin-top: 0;
     margin-bottom: @grid-gutter-width - 10;
+  }
+}
+
+.table{
+
+  .th-icon{
+    float: right;
   }
 }
