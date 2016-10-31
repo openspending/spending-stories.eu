@@ -25,7 +25,7 @@ $(document).ready(function () {
           .attr("preserveAspectRatio", "xMinYMin meet");
 
 //Load in GeoJSON data
-  d3.json("app/scripts/ne_50m_admin_0_countries_simplified.json", function (json) {
+  d3.json("app/scripts/europe.json", function (json) {
 
     //Bind data and create one path per GeoJSON feature
     svg.selectAll("path")
