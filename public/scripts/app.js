@@ -178,8 +178,12 @@ $(document).ready(function () {
   var w = $(window).width();
   var h = $(window).height();
 
+
 // Map stroke width
   var strokeWidth = 2;
+  var baseCountryColor = '#b2b2b2';
+  var activeCountryColor = '#94ADD6';
+  var strokeCountryColor = '#ffffff';
 
 //Define map projection
   var projection = d3.geo.mercator() //utiliser une projection standard pour aplatir les pôles, voir D3 projection plugin
@@ -190,7 +194,6 @@ $(document).ready(function () {
 //Define path generator
   var path = d3.geo.path()
           .projection(projection);
-
 
 //Create SVG
   var svg = d3.select(".hero-map")
@@ -207,9 +210,13 @@ $(document).ready(function () {
             .enter()
             .append("path")
             .attr("d", path)
-            .attr("stroke", "rgba(255, 255, 255, 1)")
+            .attr("stroke", strokeCountryColor)
             .attr("stroke-width", strokeWidth)
-            .attr("fill", "rgba(0, 0, 0, 0.3)");
+            .attr("fill", baseCountryColor)
+            .on("click", function () {
+              svg.selectAll("path").attr("class", "");
+              d3.select(this).attr("class", "selected");
+            });
 
   });
 
