@@ -21,22 +21,22 @@ function renderMap(container, width, height) {
 
   // Create SVG
   var svg = d3.select(container)
-    .append("svg")
-    .attr("viewBox", "0 0 " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMin meet");
+    .append('svg')
+    .attr('viewBox', '0 0 ' + width + ' ' + height)
+    .attr('preserveAspectRatio', 'xMinYMin meet');
 
   // Load in GeoJSON data
   // Bind data and create one path per GeoJSON feature
   d3.json('public/data/ne_50m_admin_0_countries_simplified.json',
     function(json) {
-      svg.selectAll("path")
+      svg.selectAll('path')
         .data(json.features)
         .enter()
-        .append("path")
-        .attr("d", path)
-        .attr("stroke", "rgba(255, 255, 255, 1)")
-        .attr("stroke-width", strokeWidth)
-        .attr("fill", "rgba(0, 0, 0, 0.3)");
+        .append('path')
+        .attr('d', path)
+        .attr('stroke', 'rgba(255, 255, 255, 1)')
+        .attr('stroke-width', strokeWidth)
+        .attr('fill', 'rgba(0, 0, 0, 0.3)');
     });
 }
 
