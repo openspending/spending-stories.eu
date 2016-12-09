@@ -14,10 +14,7 @@
 - run the tests
 `npm test`
 
-- run the application...
-`npm start`
-
-- ... or just open index.html in your favorite browser
+- run the application: `npm start` and open `localhost:3300` in browser
 
 - check code style
 `npm run review`
