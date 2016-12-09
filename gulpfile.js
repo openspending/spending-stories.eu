@@ -14,26 +14,24 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var resolve = require('resolve');
 var stringify = require('stringify');
-var _ = require('lodash');
 
 var frontSrcDir = path.join(__dirname, '/app');
 var frontStylesDir = path.join(frontSrcDir, '/styles');
 var frontScriptsDir = path.join(frontSrcDir, '/scripts');
+var frontImagesDir = path.join(frontSrcDir, '/images');
+var frontDataDir = path.join(frontSrcDir, '/data');
 
 var publicDir = path.join(__dirname, '/public');
 var publicScriptsDir = path.join(publicDir, '/scripts');
 var publicStylesDir = path.join(publicDir, '/styles');
-var publicFontsDir = path.join(publicDir, '/fonts');
-var publicAssetsDir = path.join(publicDir, '/assets');
-
-var nodeModulesDir = path.join(__dirname, '/node_modules');
+var publicImagesDir = path.join(publicDir, '/images');
+var publicDataDir = path.join(publicDir, '/data');
 
 gulp.task('default', [
   'app.scripts',
   'app.styles',
-  'app.assets',
-  'vendor.styles',
-  'vendor.fonts'
+  'app.images',
+  'app.data'
 ]);
 
 gulp.task('app.scripts', function () {
@@ -70,29 +68,12 @@ gulp.task('app.styles', function () {
           .pipe(gulp.dest(publicStylesDir));
 });
 
-gulp.task('app.assets', function () {
-  return gulp.src([
-    path.join(frontSrcDir, '/images/adessium-foundation-white-375x93.png'),
-    path.join(nodeModulesDir, '/os-bootstrap/dist/assets/os-branding/vector/light/os.svg')
-  ])
-          .pipe(gulp.dest(publicAssetsDir));
+gulp.task('app.images', function () {
+  return gulp.src(path.join(frontImagesDir, '/**/*'))
+    .pipe(gulp.dest(publicImagesDir));
 });
 
-gulp.task('vendor.styles', function () {
-  var files = [
-    path.join(nodeModulesDir, '/font-awesome/css/font-awesome.min.css'),
-    path.join(nodeModulesDir, '/angular/angular-csp.css')
-  ];
-  return gulp.src(files)
-          .pipe(concat('vendor.css'))
-          .pipe(gulp.dest(publicStylesDir));
-});
-
-gulp.task('vendor.fonts', function () {
-  var files = [
-    path.join(nodeModulesDir, '/font-awesome/fonts/*'),
-    path.join(nodeModulesDir, '/os-bootstrap/dist/fonts/*')
-  ];
-  return gulp.src(files)
-          .pipe(gulp.dest(publicFontsDir));
+gulp.task('app.data', function () {
+  return gulp.src(path.join(frontDataDir, '/**/*'))
+    .pipe(gulp.dest(publicDataDir));
 });
