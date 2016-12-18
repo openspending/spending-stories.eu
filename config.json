@@ -1,0 +1,17 @@
+{
+  "endpoint": "http://next.openspending.org/api/3",
+  "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2007-2020",
+  "countryCodeDimension": "administrative_classification_2.beneficiary_country_code",
+  "queries": {
+    "totalSubsidies": {
+      "aggregates": "total_amount.sum",
+      "drilldown": "activity_funding_period_number.funding_period_number"
+    },
+    "topBeneficiaries": {
+      "aggregates": "total_amount.sum",
+      "drilldown": "recipient_2.beneficiary_name",
+      "pagesize": 10,
+      "order": "total_amount.sum:desc"
+    }
+  }
+}
