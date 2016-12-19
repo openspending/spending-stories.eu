@@ -8,19 +8,23 @@ var cleanCss = require('gulp-clean-css');
 var prefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 
-var frontSrcDir = path.join(__dirname, '/app');
-var frontStylesDir = path.join(frontSrcDir, '/styles');
-var frontImagesDir = path.join(frontSrcDir, '/images');
-var frontDataDir = path.join(frontSrcDir, '/data');
+var frontSrcDir = path.join(__dirname, 'app');
+var frontStylesDir = path.join(frontSrcDir, 'styles');
+var frontImagesDir = path.join(frontSrcDir, 'images');
+var frontDataDir = path.join(frontSrcDir, 'data');
 
-var publicDir = path.join(__dirname, '/public');
-var publicStylesDir = path.join(publicDir, '/styles');
-var publicImagesDir = path.join(publicDir, '/images');
-var publicDataDir = path.join(publicDir, '/data');
+var nodeModulesDir = path.join(__dirname, 'node_modules');
+
+var publicDir = path.join(__dirname, 'public');
+var publicStylesDir = path.join(publicDir, 'styles');
+var publicImagesDir = path.join(publicDir, 'images');
+var publicFontsDir = path.join(publicDir, 'fonts');
+var publicDataDir = path.join(publicDir, 'data');
 
 gulp.task('default', [
   'app.styles',
   'app.images',
+  'app.fonts',
   'app.data'
 ]);
 
@@ -39,6 +43,11 @@ gulp.task('app.styles', function() {
 });
 
 gulp.task('app.images', function() {
+  return gulp.src(path.join(nodeModulesDir, 'font-awesome/fonts/*'))
+    .pipe(gulp.dest(publicFontsDir));
+});
+
+gulp.task('app.fonts', function() {
   return gulp.src(path.join(frontImagesDir, '/**/*'))
     .pipe(gulp.dest(publicImagesDir));
 });

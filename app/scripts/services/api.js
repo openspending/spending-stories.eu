@@ -1,16 +1,12 @@
 'use strict';
 
 var _ = require('lodash');
+var downloader = require('./downloader');
 var config = require('../../../config.json');
 var countries = require('../../data/eu-countries.json');
 var Promise = require('bluebird');
 
-function processFetchResponse(response) {
-  if (response.status != 200) {
-    throw new Error('Failed loading data from ' + response.url);
-  }
-  return response.text();
-}
+var defaultGeoDataUrl = 'public/data/ne_50m_admin_0_countries_simplified.json';
 
 function processApiResponse(response) {
   var key = _.first(response.attributes);
@@ -30,7 +26,8 @@ function getCountries() {
         country.shortCode,
         {
           name: country.name,
-          code: null
+          code: country.shortCode,
+          isDataAvailable: false
         }
       ];
     })
@@ -42,9 +39,7 @@ function getCountries() {
   }
   var url = config.endpoint + '/cubes/' + encodeURIComponent(config.dataset) +
     '/members/' + encodeURIComponent(config.countryCodeDimension);
-  return fetch(url)
-    .then(processFetchResponse)
-    .then(JSON.parse)
+  return downloader.getJson(url)
     .then(function(response) {
       var key = config.countryCodeDimension;
       var codes = _.chain(response.data)
@@ -60,20 +55,28 @@ function getCountries() {
       return _.chain(countries)
         .map(function(country) {
           var codeToFind = _.lowerCase(country[codeFormat]);
-          var code = _.find(codes, function(code) {
+          var isDataAvailable = !!_.find(codes, function(code) {
             return _.lowerCase(code) == codeToFind;
           });
           return [
             country.shortCode,
             {
               name: country.name,
-              code: code || null
+              code: country[codeFormat],
+              isDataAvailable: isDataAvailable
             }
           ];
         })
         .fromPairs()
         .value();
     });
+}
+
+function getGeoData(url) {
+  url = url || defaultGeoDataUrl;
+  return downloader.getJson(url).then(function(geoJson) {
+    return _.isArray(geoJson.features) ? geoJson.features : [];
+  });
 }
 
 function createQueryFunction(params, isSingleResult) {
@@ -102,9 +105,7 @@ function createQueryFunction(params, isSingleResult) {
       .value();
     var url = config.endpoint + '/cubes/' + encodeURIComponent(config.dataset) +
       '/aggregate?' + query;
-    return fetch(url)
-      .then(processFetchResponse)
-      .then(JSON.parse)
+    return downloader.getJson(url)
       .then(processApiResponse)
       .then(function(results) {
         return isSingleResult ? _.get(results, '[0].value', 0) : results;
@@ -113,6 +114,7 @@ function createQueryFunction(params, isSingleResult) {
 }
 
 module.exports.getCountries = getCountries;
+module.exports.getGeoData = getGeoData;
 module.exports.getTotalSubsidies = createQueryFunction(
   config.queries.totalSubsidies, true);
 module.exports.getTopBeneficiaries = createQueryFunction(
