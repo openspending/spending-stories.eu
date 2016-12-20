@@ -3,6 +3,7 @@
 var config = require('../../config.json');
 var $ = require('jquery');
 var _ = require('lodash');
+var Promise = require('bluebird');
 var utils = require('./services/utils');
 var url = require('url');
 var api = require('./services/api');
@@ -31,6 +32,16 @@ function getRouteInfo() {
     }
   }
 
+  return result;
+}
+
+function getCountriesWithData(countries) {
+  var result = {};
+  _.each(countries, function(country, code) {
+    if (country.isDataAvailable) {
+      result[code] = country;
+    }
+  });
   return result;
 }
 
@@ -74,20 +85,21 @@ function bootstrap() {
 
   promises.countries.then(function(countries) {
     countryList.render($('#country-list').empty(), {
-      countries: countries,
+      countries: getCountriesWithData(countries),
       baseUrl: 'country.html'
     });
-
-    $('#country-name').text(countries[countryCode].name);
+    return countries;
   });
 
-  promises.map.then(function(data) {
+  Promise.all([promises.map, promises.countries]).then(function(results) {
     map.render($('#map-container').empty(), {
-      data: data,
+      data: results[0],
+      countries: getCountriesWithData(results[1]),
       width: $(window).width(),
       height: $(window).height(),
       baseUrl: 'country.html'
     });
+    return results;
   });
 
   var countryCode = route.countryCode;
@@ -106,15 +118,22 @@ function bootstrap() {
       countryCode: countryCode
     });
 
+    promises.countries.then(function(countries) {
+      $('#country-name').text(countries[countryCode].name);
+      return countries;
+    });
+
     promises.topBeneficiaries.then(function(items) {
       topBeneficiaries.render($('#top-beneficiaries').empty(), {
         items: items,
         formatValue: formatValue
       });
+      return items;
     });
 
     promises.totalSubsidies.then(function(value) {
       $('#total-subsidies').text(formatValue(value));
+      return value;
     });
   }
 }

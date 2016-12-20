@@ -10,7 +10,8 @@ function render(container, options) {
     data: {},
     width: 0,
     height: 0,
-    baseUrl: ''
+    baseUrl: '',
+    countries: null
   }, options);
 
   // Map stroke width
@@ -29,6 +30,7 @@ function render(container, options) {
   // Create SVG
   var svg = d3.select(container)
     .append('svg')
+    .attr('xmlns:xlink', 'http://www.w3.org/1999/xlink')
     .attr('viewBox', '0 0 ' + options.width + ' ' + options.height)
     .attr('preserveAspectRatio', 'xMinYMin meet');
 
@@ -36,6 +38,13 @@ function render(container, options) {
   svg.selectAll('path')
     .data(options.data)
     .enter()
+    .append('a')
+    .attr('xlink:href', function(datum) {
+      var code = datum.properties.iso_a2;
+      var url = options.baseUrl + '?country=' + encodeURIComponent(code);
+      var country = _.get(options, 'countries.' + code);
+      return _.isObject(country) ? url : null;
+    })
     .append('path')
     .attr('d', path)
     .attr('stroke', 'rgba(255, 255, 255, 1)')
