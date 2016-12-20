@@ -6,7 +6,7 @@ var auth = require('http-auth');
 
 var config = {
   port: process.env.PORT || 3300,
-  accessToken: process.env.SUBSIDYSTORIESEU_ASSESS_TOKEN || ''
+  accessToken: process.env.SUBSIDYSTORIESEU_ASSESS_TOKEN || '123'
 };
 
 var app = express();
@@ -14,9 +14,11 @@ var app = express();
 app.set('config', config);
 app.set('port', config.port);
 
+var middlewares = [];
+
 // simple auth
 if (config.accessToken != '') {
-  app.use(auth.connect(auth.basic(
+  middlewares.push(auth.connect(auth.basic(
     {realm: 'Protected area.'},
     function(username, password, callback) {
       var token = config.accessToken;
@@ -32,7 +34,7 @@ if (config.accessToken != '') {
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // pages
-app.use(express.static(path.join(__dirname, 'app/pages')));
+app.use(middlewares, express.static(path.join(__dirname, 'app/pages')));
 
 app.listen(app.get('port'), function() {
   console.log('Listening on :' + app.get('port'));

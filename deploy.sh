@@ -19,7 +19,6 @@ if [ $? == 0 ]; then
   if npm install && npm run build && npm run review && npm test; then
     rm ./public/.gitignore 2>/dev/null
     git add --force ./public
-
     git commit -m "Build"
     # deploy
     if git push --force ${HEROKU_REPOSITORY} ${DEPLOY_BRANCH}:master; then
