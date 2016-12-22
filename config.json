@@ -1,0 +1,25 @@
+{
+  "endpoint": "http://next.openspending.org/api/3",
+  "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2007-2020",
+  "countryCodeDimension": "administrative_classification_2.beneficiary_country_code",
+  "queries": {
+    "totalSubsidies": {
+      "aggregates": "total_amount.sum",
+      "drilldown": "activity_funding_period_number.funding_period_number"
+    },
+    "topBeneficiaries": {
+      "aggregates": "total_amount.sum",
+      "drilldown": "recipient_2.beneficiary_name",
+      "pagesize": 10,
+      "order": "total_amount.sum:desc"
+    }
+  },
+  "embed": [
+    "http://next.openspending.org/viewer/embed/treemap/6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2007-2020?lang=en&measure=total_amount.sum&groups%5B%5D=recipient_2.beneficiary_name&filters%5Badministrative_classification_2.beneficiary_country_code%5D%5B%5D=PL&order=total_amount.sum%7Cdesc"
+  ],
+  "valueFormattingScale": {
+    "Billions": 1000000000,
+    "Millions": 1000000,
+    "Thousands": 1000
+  }
+}

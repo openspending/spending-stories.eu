@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
 
-# check if heroku and git cli are available
-if ! which heroku 1>/dev/null 2>/dev/null; then
-  echo "Heroku cli not installed.";
-  exit 1;
-fi
+HEROKU_REPOSITORY="https://git.heroku.com/subsidystorieseu.git"
+
+# check if git cli is available
 if ! which git 1>/dev/null 2>/dev/null; then
    echo "Git cli not installed.";
    exit 1;
-fi
-
-# login to heroku
-if ! heroku auth:whoami 1>/dev/null 2>/dev/null; then
-  echo "Log in to Heroku"
-  if ! heroku auth:login; then exit 1; fi
 fi
 
 # create temporary branch for deploy
@@ -27,10 +19,9 @@ if [ $? == 0 ]; then
   if npm install && npm run build && npm run review && npm test; then
     rm ./public/.gitignore 2>/dev/null
     git add --force ./public
-
     git commit -m "Build"
     # deploy
-    if git push --force heroku ${DEPLOY_BRANCH}:master; then
+    if git push --force ${HEROKU_REPOSITORY} ${DEPLOY_BRANCH}:master; then
       # successful build - return to previous branch and cleanup
       git checkout ${PREVIOUS_BRANCH} 2>/dev/null
       git branch -D ${DEPLOY_BRANCH} 2>/dev/null
