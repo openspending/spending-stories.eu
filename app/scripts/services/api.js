@@ -6,7 +6,7 @@ var config = require('../../../config.json');
 var countries = require('../../data/eu-countries.json');
 var Promise = require('bluebird');
 
-var defaultGeoDataUrl = 'public/data/ne_50m_admin_0_countries_simplified.json';
+var defaultGeoDataUrl = 'public/data/eu-countries-polygons.json';
 
 function processApiResponse(response) {
   var key = _.first(response.attributes);
