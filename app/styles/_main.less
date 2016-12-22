@@ -20,17 +20,29 @@
 
 .hero-map{
   position: relative;
-  overflow: hidden;
+  /*overflow: hidden;*/
   width: 100%;
   height: auto;
+  min-height: 100vh;
 
   svg {
     background-color: white;
+    overflow: hidden;
   }
 
-  path:hover, path.active {
-    fill: @colour-map-hover;
-    cursor: pointer;
+  a{
+    &:not(.inactive-country){
+      &:hover{        
+        path, path.active {
+          fill: @colour-map-hover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .inactive-country{
+    opacity: 0.3;
   }
 
 }
@@ -41,14 +53,25 @@
   line-height: 0.9;
   font-size: @font-size-h2 * 1.5;
 
+  a{
+    color: inherit;
+    transition: 100ms color ease-in-out;
+
+    &:hover{
+      text-decoration: none;
+      color: @colour-polo-blue;
+    }
+
+  }
+
   @media (max-width: @screen-md-max){
     padding: @grid-gutter-width;
   }
 
   @media (min-width: @screen-lg-min){
     position: absolute;
-    top: 40%;
-    left: @hero-nav-left;
+    bottom: 15%;
+    left: @hero-nav-left - 1;
   }
 
   .text-polo-blue{
@@ -68,7 +91,7 @@
   @media (min-width: @screen-lg-min){
     position: absolute;
     top: 5%;
-    left: @hero-nav-left*2;
+    left: @hero-nav-left;
   }
 
 }
