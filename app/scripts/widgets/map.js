@@ -19,7 +19,7 @@ function render(container, options) {
 
   // Define map projection
   var projection = d3.geo.mercator()
-    .center([13, 57])
+    .center([-10, 54])
     .translate([options.width / 2, options.height / 2])
     .scale([options.width / 2]);
 
@@ -45,6 +45,7 @@ function render(container, options) {
       var country = _.get(options, 'countries.' + code);
       return _.isObject(country) ? url : null;
     })
+    .filter(function(e){ if (!$(this).attr('href')) $(this).addClass('inactive-country'); return $(this); })
     .append('path')
     .attr('d', path)
     .attr('stroke', 'rgba(255, 255, 255, 1)')
