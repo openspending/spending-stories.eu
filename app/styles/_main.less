@@ -13,6 +13,15 @@
   }
 }
 
+.active-country{
+  
+  path{ 
+    fill: @colour-map-hover;
+    cursor: pointer;
+  }
+  
+}
+
 .main-content{
   margin-top: @grid-gutter-width;
   margin-bottom: @grid-gutter-width;
@@ -20,23 +29,20 @@
 
 .hero-map{
   position: relative;
-  /*overflow: hidden;*/
+  overflow: hidden;
   width: 100%;
   height: auto;
-  min-height: 100vh;
+  min-height: 49.5vw;
 
   svg {
     background-color: white;
-    overflow: hidden;
+    overflow: visible;
   }
 
   a{
     &:not(.inactive-country){
       &:hover{        
-        path, path.active {
-          fill: @colour-map-hover;
-          cursor: pointer;
-        }
+        .active-country;
       }
     }
   }
@@ -70,7 +76,7 @@
 
   @media (min-width: @screen-lg-min){
     position: absolute;
-    bottom: 15%;
+    top: 20%;
     left: @hero-nav-left - 1;
   }
 
@@ -84,13 +90,42 @@
   }
 }
 
+.hero-select{
+
+  position: relative;
+
+  &:after{
+    top: 20%;
+    right: @grid-gutter-width/3;
+    transform: scaleY(0.6);
+    position: absolute;
+    display: inline-block;
+    content: 'V';
+  }
+
+  .form-control{
+    appearance: none;
+  }
+
+  @media (max-width: @screen-md-max){
+    margin: 0 @grid-gutter-width @grid-gutter-width;
+  }
+
+  @media (min-width: @screen-lg-min){
+    position: absolute;
+    top: 40%;
+    left: @hero-nav-left;
+    width: @grid-gutter-width*9;
+  }
+}
+
 .hero-nav{
 
   font-size: @hero-nav-font-size;
 
   @media (min-width: @screen-lg-min){
     position: absolute;
-    top: 5%;
+    bottom: 15%;
     left: @hero-nav-left;
   }
 
@@ -106,10 +141,14 @@
     padding: @grid-gutter-width/2;
     margin-bottom: 0;
     background: lighten(@colour-gray-light, 20%);
+
+    li{
+      display: inline-block;
+    }
   }
 
   li{
-    display: inline-block;
+    display: block;
     padding-right: 3rem;
 
     a{
