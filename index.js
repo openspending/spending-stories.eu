@@ -6,7 +6,7 @@ var auth = require('http-auth');
 
 var config = {
   port: process.env.PORT || 3300,
-  accessToken: process.env.SUBSIDYSTORIESEU_ASSESS_TOKEN || '123'
+  accessToken: process.env.SUBSIDYSTORIESEU_ASSESS_TOKEN || ''
 };
 
 var app = express();
