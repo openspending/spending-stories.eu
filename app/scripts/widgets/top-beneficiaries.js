@@ -8,10 +8,10 @@ function render(container, options) {
     items: [],
     formatValue: _.identity
   }, options);
-  var ul = $('<ul>').addClass('list-unstyled list-lg');
-  _.each(options.items, function(item) {
+  var ul = $('<ul>').addClass('list-unstyled list-md');
+  _.each(options.items, function (item) {
     $('<li>')
-      .text(item.name + ' | ' + options.formatValue(item.value))
+      .html('<div class="row"><div class="col-sm-8">' + item.name + '</div><div class="col-sm-4 text-right">' + options.formatValue(item.value) + '</div></div>')
       .appendTo(ul);
   });
   $(container).append(ul);
