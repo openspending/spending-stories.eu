@@ -14,12 +14,12 @@
 }
 
 .active-country{
-  
+
   path{ 
     fill: @colour-map-hover;
     cursor: pointer;
   }
-  
+
 }
 
 .main-content{
@@ -161,7 +161,10 @@
 .country-data{
   min-height: 100vh;
   padding-right: @grid-gutter-width;
-  border-right: @list-border;
+
+  @media (min-width: @screen-md-min){
+    border-right: @list-border;
+  }
 }
 
 .list-country{
