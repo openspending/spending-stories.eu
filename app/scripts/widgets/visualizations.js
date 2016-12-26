@@ -13,7 +13,7 @@ function render(container, options) {
     var wrapper = $('<div>')
       .css({
         position: 'relative',
-        paddingTop: '100%'
+        minHeight: '250vh'
       })
       .append(
         $('<iframe>')
@@ -37,7 +37,7 @@ function render(container, options) {
           })
       );
 
-    $('<div>').addClass('content-grid-item col-md-6')
+    $('<div>').addClass('content-grid-item')
       .append(wrapper).appendTo(container);
   });
 }
