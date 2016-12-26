@@ -8,6 +8,7 @@ var utils = require('./services/utils');
 var url = require('url');
 var api = require('./services/api');
 var countryList = require('./widgets/country-list');
+var countryDropdown = require('./widgets/country-dropdown');
 var map = require('./widgets/map');
 var topBeneficiaries = require('./widgets/top-beneficiaries');
 var visualizations = require('./widgets/visualizations');
@@ -23,7 +24,8 @@ function getRouteInfo() {
 
   var parts = url.parse(window.location.href, true);
   if (_.isObject(parts)) {
-    result.isIndexPage = parts.pathname == '/index.html';
+    result.isIndexPage = (parts.pathname == '/index.html') ||
+      (parts.pathname == '/') || (parts.pathname == '');
     result.isCountryPage = parts.pathname == '/country.html';
     result.isCountryDetailsPage = parts.pathname == '/country-details.html';
 
@@ -84,6 +86,10 @@ function bootstrap() {
   };
 
   promises.countries.then(function(countries) {
+    countryDropdown.render($('#country-dropdown'), {
+      countries: getCountriesWithData(countries),
+      baseUrl: 'country.html'
+    });
     countryList.render($('#country-list').empty(), {
       countries: getCountriesWithData(countries),
       baseUrl: 'country.html'
