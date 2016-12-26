@@ -158,6 +158,11 @@
   }
 }
 
+.country-data{
+  padding-right: @grid-gutter-width;
+  border-right: @list-border;
+}
+
 .list-country{
   .list-unstyled;
   .reset-link-color;
@@ -165,7 +170,6 @@
   margin: @grid-gutter-width 0;
   padding-left: (@grid-gutter-width*2)-10;
   font-size: @font-size-h3;
-  border-left: @list-border;
   font-style: italic;
 }
 
@@ -175,7 +179,7 @@
 
 .list-footer{
   .list-unstyled;
-  .reset-link-colorч
+  .reset-link-color;
 
   li{
     line-height: 1.1;
@@ -252,24 +256,7 @@ cite{
 
 .content-grid {
   .content-grid-item {
-    min-height: 30rem;
     padding: @grid-gutter-width/3;
-
-    border-bottom: @list-border;
-
-    &:last-child {
-      border-bottom: 0;
-    }
-
-    @media (min-width: @screen-md-min) {
-      &:nth-child(2n+1) {
-        border-right: @list-border;
-      }
-
-      &:nth-child(-2) {
-        border-bottom: 0;
-      }
-    }
   }
 }
 
@@ -307,11 +294,11 @@ cite{
   }
 }
 
-#top-beneficiaries {
+/*#top-beneficiaries {
   max-height: 22rem;
   overflow: auto;
 
   li {
     white-space: nowrap;
   }
-}
+}*/
