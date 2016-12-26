@@ -101,6 +101,7 @@ function bootstrap() {
   Promise.all([promises.map, promises.countries]).then(function(results) {
     map.render($('#map-container').empty(), {
       data: results[0],
+      countryCode: route.countryCode,
       countries: getCountriesWithData(results[1]),
       width: $(window).width(),
       height: $(window).height(),
