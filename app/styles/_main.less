@@ -64,8 +64,15 @@
     transition: 100ms color ease-in-out;
 
     &:hover{
-      text-decoration: none;
-      color: @colour-polo-blue;
+
+      &{
+        text-decoration: none;        
+      }
+
+      &,
+      .text-polo-blue{
+        color: @colour-picton-blue;        
+      }
     }
 
   }
@@ -81,11 +88,13 @@
   }
 
   .text-polo-blue{
-    font-size: @font-size-h1 * 2;
-    @media (min-width: @screen-lg-min){
-      position: relative;
-      top: @grid-gutter-width/6;
-      left: (@grid-gutter-width/3) + 3;
+    &:first-child{
+      font-size: @font-size-h1 * 2;
+      @media (min-width: @screen-lg-min){
+        position: relative;
+        top: @grid-gutter-width/6;
+        left: (@grid-gutter-width/3) + 3;
+      }
     }
   }
 }
@@ -172,7 +181,7 @@
   .reset-link-color;
 
   margin: @grid-gutter-width 0;
-  padding-left: (@grid-gutter-width*2)-10;
+  padding-left: @grid-gutter-width;
   font-size: @font-size-h3;
   font-style: italic;
 }
@@ -238,7 +247,7 @@ cite{
 .content-years{
   font-size: @font-size-h3;
   color: @gray-light;
-  margin: @grid-gutter-width/2 0 @grid-gutter-width/2 (@grid-gutter-width*2)-10;
+  margin: @grid-gutter-width/2 0 @grid-gutter-width/2 @grid-gutter-width;
 }
 
 .content-intro{
