@@ -87,6 +87,7 @@ function bootstrap() {
 
   promises.countries.then(function(countries) {
     countryDropdown.render($('#country-dropdown'), {
+      countryCode: route.countryCode,
       countries: getCountriesWithData(countries),
       baseUrl: 'country.html'
     });
