@@ -12,6 +12,7 @@ function render(container, options) {
   _.each(options.countries, function(country) {
     var url = options.baseUrl + '?country=' + encodeURIComponent(country.code);
     $('<li>')
+      .addClass(country.code == options.countryCode ? 'selected' : '')
       .append(
         $('<a>').attr('href', url).text(country.name)
       )
