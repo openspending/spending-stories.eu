@@ -16,12 +16,12 @@
 .active-country{
 
   &:focus{
-    path{ 
+    path{
       fill: darken(@colour-map-hover, 10%);
     }
   }
 
-  path{ 
+  path{
     fill: @colour-map-hover;
     cursor: pointer;
   }
@@ -47,7 +47,7 @@
 
   a{
     &:not(.inactive-country){
-      &:hover{        
+      &:hover{
         .active-country;
       }
     }
@@ -72,7 +72,7 @@
   text-align: center;
   line-height: 0.9;
   font-size: @font-size-h2 * 1.5;
-  
+
   @media (min-width: @screen-lg-min){
     position: relative;
     right: @grid-gutter-width/2;
@@ -84,11 +84,11 @@
 
     &:hover{
 
-      text-decoration: none;        
+      text-decoration: none;
 
       &,
       .text-polo-blue{
-        color: @colour-picton-blue;        
+        color: @colour-picton-blue;
       }
     }
 
@@ -187,9 +187,9 @@
 
 .country-data{
   min-height: 100vh;
-  padding-right: @grid-gutter-width;
 
   @media (min-width: @screen-md-min){
+    padding-right: @grid-gutter-width;
     border-right: @list-border;
   }
 }
@@ -342,4 +342,17 @@ cite{
 
 #top-beneficiaries {
   margin-bottom: @grid-gutter-width;
+
+  .beneficiary{
+    @media (max-width: @screen-sm-max){
+      margin-top: @grid-gutter-width/2;
+      padding-bottom: @grid-gutter-width/2;
+      margin-bottom: @grid-gutter-width/2;
+      border-bottom: 1px solid lighten(@colour-gray-light, 20%);
+    }
+  }
+
+  .total-budget{
+    text-align: right;
+  }
 }
