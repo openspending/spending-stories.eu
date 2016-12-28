@@ -15,6 +15,12 @@
 
 .active-country{
 
+  &:focus{
+    path{ 
+      fill: darken(@colour-map-hover, 10%);
+    }
+  }
+
   path{ 
     fill: @colour-map-hover;
     cursor: pointer;
@@ -60,19 +66,33 @@
   font-size: @font-size-h2 * 1.5;
 
   a{
-    color: inherit;
+    /*color: inherit;*/
     transition: 100ms color ease-in-out;
 
     &:hover{
 
-      &{
-        text-decoration: none;        
-      }
+      text-decoration: none;        
 
       &,
       .text-polo-blue{
         color: @colour-picton-blue;        
       }
+    }
+
+    &:focus{
+      transition: none;
+      color: darken(@colour-picton-blue, 10%);
+
+      .text-picton-blue,
+      .text-polo-blue{
+        color: inherit;
+      }
+    }
+
+    &:focus,
+      &:active{
+      outline: none;
+      text-decoration: none;
     }
 
   }
@@ -93,7 +113,7 @@
       @media (min-width: @screen-lg-min){
         position: relative;
         top: @grid-gutter-width/6;
-        left: (@grid-gutter-width/3) + 3;
+        left: (@grid-gutter-width/3) + 4;
       }
     }
   }
