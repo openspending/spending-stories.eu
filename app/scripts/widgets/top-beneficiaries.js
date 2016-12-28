@@ -11,9 +11,10 @@ function render(container, options) {
   var ul = $('<ul>').addClass('list-unstyled list-md');
   _.each(options.items, function(item) {
     $('<li>')
+      .addClass('beneficiary')
       .html(
-        '<div class="row"><div class="col-sm-8">' + item.name +
-        '</div><div class="col-sm-4 text-right">' +
+        '<div class="row"><div class="col-xs-8">' + item.name +
+        '</div><div class="col-xs-4 total-budget">' +
         options.formatValue(item.value) + '</div></div>')
       .appendTo(ul);
   });
