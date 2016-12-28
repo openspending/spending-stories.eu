@@ -92,6 +92,7 @@ function bootstrap() {
       baseUrl: 'country.html'
     });
     countryList.render($('#country-list').empty(), {
+      countryCode: route.countryCode,
       countries: getCountriesWithData(countries),
       baseUrl: 'country.html'
     });
