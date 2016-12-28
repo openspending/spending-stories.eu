@@ -59,11 +59,24 @@
 
 }
 
+.hero-sidebar{
+  @media (min-width: @screen-lg-min){
+    position: absolute;
+    top: 20%;
+    left: @hero-nav-left;
+  }
+}
+
 .hero-title{
   margin: 0;
   text-align: center;
   line-height: 0.9;
   font-size: @font-size-h2 * 1.5;
+  
+  @media (min-width: @screen-lg-min){
+    position: relative;
+    right: @grid-gutter-width/2;
+  }
 
   a{
     /*color: inherit;*/
@@ -101,12 +114,6 @@
     padding: @grid-gutter-width;
   }
 
-  @media (min-width: @screen-lg-min){
-    position: absolute;
-    top: 20%;
-    left: @hero-nav-left - 1;
-  }
-
   .text-polo-blue{
     &:first-child{
       font-size: @font-size-h1 * 2;
@@ -141,23 +148,14 @@
   }
 
   @media (min-width: @screen-lg-min){
-    position: absolute;
-    top: 40%;
-    left: @hero-nav-left;
+    margin-top: @grid-gutter-width;
+    margin-bottom: @grid-gutter-width*2;
     width: @grid-gutter-width*9;
   }
 }
 
 .hero-nav{
-
   font-size: @hero-nav-font-size;
-
-  @media (min-width: @screen-lg-min){
-    position: absolute;
-    bottom: 15%;
-    left: @hero-nav-left;
-  }
-
 }
 
 .list-hero-nav{
@@ -204,7 +202,7 @@
   padding-left: @grid-gutter-width;
   font-size: @font-size-h3;
   font-style: italic;
-  
+
   .selected{
     a{
       .text-picton-blue;
