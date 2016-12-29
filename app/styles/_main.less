@@ -62,14 +62,12 @@
 .hero-sidebar{
   @media (min-width: @screen-lg-min){
     position: absolute;
-    top: 20%;
-    left: @hero-nav-left;
+    top: @grid-gutter-width*2;
   }
 }
 
 .hero-title{
-  margin: 0;
-  text-align: center;
+  margin: @grid-gutter-width*2 0 @grid-gutter-width @grid-gutter-width/2;
   line-height: 0.9;
   font-size: @font-size-h2 * 1.5;
 
@@ -120,8 +118,11 @@
       @media (min-width: @screen-lg-min){
         position: relative;
         top: @grid-gutter-width/6;
-        left: (@grid-gutter-width/3) + 4;
+        //left: (@grid-gutter-width/3) + 4;
       }
+    }
+    &:nth-child(2){
+      margin-left: @grid-gutter-width/2 - 2;
     }
   }
 }
@@ -129,6 +130,8 @@
 .hero-select{
 
   position: relative;
+  margin-top: @grid-gutter-width;
+  margin-bottom: @grid-gutter-width*2;
 
   &:after{
     top: 20%;
@@ -141,16 +144,6 @@
 
   .form-control{
     appearance: none;
-  }
-
-  @media (max-width: @screen-md-max){
-    margin: 0 @grid-gutter-width @grid-gutter-width;
-  }
-
-  @media (min-width: @screen-lg-min){
-    margin-top: @grid-gutter-width;
-    margin-bottom: @grid-gutter-width*2;
-    width: @grid-gutter-width*9;
   }
 }
 
@@ -175,11 +168,14 @@
   }
 
   li{
-    display: block;
-    padding-right: 3rem;
+    display: inline-block;
+
+    &:not(:last-child){
+      padding-right: @grid-gutter-width;
+    }
 
     a{
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 700;
     }
   }
@@ -298,12 +294,30 @@ cite{
 
 .content-header-title{
   margin-top: 0;
+  font-size: 6rem;
+}
+.content-header-buttons{
+  @media (min-width: @screen-sm-min){
+    text-align: right;
+  }
 }
 
 .content-grid {
   .content-grid-item {
     padding: @grid-gutter-width/3;
   }
+}
+
+.content-grid-item-lg{
+
+  h2{
+    font-size: 3.5rem;
+  }
+
+  p{
+    font-size: 1.5rem;
+  }
+
 }
 
 .content-grid-item-xl{
