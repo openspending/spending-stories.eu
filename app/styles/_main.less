@@ -38,11 +38,35 @@
   overflow: hidden;
   width: 100%;
   height: auto;
-  min-height: 49.5vw;
+
+  @media (max-width: @screen-xs-max/2){
+    min-height: 200vw;
+  }
+  @media (max-width: @screen-xs-max){
+    min-height: 175vw;
+  }
+  @media (min-width: @screen-sm-min){
+    min-height: 150vw;
+  }
+  @media (min-width: @screen-md-min){
+    min-height: 135vw;
+  }
+  @media (min-width: @screen-lg-min){
+    min-height: 50vw;
+  }
 
   svg {
     background-color: white;
     overflow: visible;
+
+    @media (max-width: @screen-md-max){
+      margin-left: 20%;
+    }
+
+    @media (min-width: @screen-lg-min){
+      margin-left: 50%;
+    }
+
   }
 
   a{
@@ -55,6 +79,25 @@
 
   .inactive-country{
     opacity: 0.3;
+    position: relative;
+
+    &:hover:after{
+      display: block;
+    }
+
+    &:after{
+      position: absolute;
+      width: 150px;
+      top: 0;
+      left: 0;
+      content: 'Data not available';
+      background: white;
+      padding: @grid-gutter-width;
+      color: red;
+      z-index: 99;
+      display: none;
+    }
+
   }
 
 }
@@ -144,6 +187,7 @@
 
   .form-control{
     appearance: none;
+    height: inherit;
   }
 }
 
@@ -368,5 +412,12 @@ cite{
 
   .total-budget{
     text-align: right;
+  }
+}
+
+.input-wrapper{
+
+  .form-control{
+    height: inherit;
   }
 }
