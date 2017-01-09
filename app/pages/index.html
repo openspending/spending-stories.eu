@@ -15,8 +15,8 @@
             <div class="hero-sidebar">
               <nav class="hero-nav">
                 <ul class="list-hero-nav">
-                  <li><a href="#">Data</a></li>
-                  <li><a href="#">Resources</a></li>
+                  <li><a href="#data" data-toggle="modal">Data</a></li>
+                  <li><a href="#resources" data-toggle="modal">Resources</a></li>
                   <li><a href="https://github.com/os-data/eu-structural-funds/">Github</a></li>
                 </ul>
               </nav>
@@ -51,6 +51,99 @@
         </div>
         <div id="country-list" class="col-md-4 visible-md visible-lg">Loading...</div>
       </div>
+
+      <!-- Modals - start -->
+
+      <!-- Modal: Data -->
+      <div class="modal fade" id="data" tabindex="-1" role="dialog" aria-labelledby="data">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="dataLabel">Data</h4>
+            </div>
+            <div class="modal-body">
+              <p>Find here the full dataset, it contains in total X lines, all 28 EU countries (except for Romania and other missing data-files), and the beneficiary lists for ERDF, ESF and the Cohesion Fund.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Resources -->
+      <div class="modal fade" id="resources" tabindex="-1" role="dialog" aria-labelledby="data">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="resourcesLabel">Resources</h4>
+            </div>
+            <div class="modal-body">
+              <p>The following gives you The following informs you about the our methodology, brings you documentation on how we collected the data and policy documentation and links that you can use for understanding the data.</p>
+              <h4>Methodology</h4>
+              <p>In processing the datasets, we went along the following steps:</p>
+              <ul>
+                <li>Sourcing the raw data: searching on the respective member states’ websites for the datasets. If not available online, we contacted the bureaus directly. However, none of the available datasets had to be obtained via an official FOI request.</li>
+                <li>Cleaning the data: the data we found didn’t necessarily meet the open data requirements. It came in different formats and sizes like PDFs or content on a website. The goal is to clean and structure the data so that it can be presented in an open, machine-readable format. To do that end we wrote a number of scrapers or used Tabula for PDF scraping.</li>
+                <li>Standardise the data: for the different datasets to be merged, all single datasets needed to be mapped to one overall schema. We are working with a fiscal data specification called <a href="http://specs.frictionlessdata.io/fiscal-data-package/">Open Fiscal Data Package</a>. After having surveyed all the datasets, we created a mapping against this specification. The full documentation is here.</li>
+                <li>The datasets are hosted on <a href="http://next.openspending.org/">OpenSpending</a>, a fiscal transparency platform developed by Open Knowledge International. It provides an extensive and ever-growing fiscal database with visualization and analyzation tools.</li>
+                <li>Documentation can be found <a href="https://docs.google.com/document/d/1442_aBoPN7Ls-EejGhk7PuJrC7hxxPcoTb6q9yUTMDc/edit?ts=58663c08">here</a> and all the code, raw data, models and schema’s can be found on <a href="https://github.com/os-data/eu-structural-funds">Github</a></li>
+              </ul>
+              <h4>Documentation</h4>
+              <p>Please find documentation <a href="https://docs.google.com/document/d/1442_aBoPN7Ls-EejGhk7PuJrC7hxxPcoTb6q9yUTMDc/edit?ts=58663c08">here</a>.</p>
+              <h4>Policy Background</h4>
+              <p>Please read more on <a href="https://docs.google.com/document/d/1JgQoxODpom4gjhKkzDOQjXdi_7CIBK18AZjagzpJDdQ/edit?usp=sharing">the policy background</a>.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: The Goal -->
+      <div class="modal fade" id="goal" tabindex="-1" role="dialog" aria-labelledby="data">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="goalLabel">The Goal</h4>
+            </div>
+            <div class="modal-body">
+              <p>The European Structural Investment Funds (ESIF), together with agricultural subsidies, provides the biggest source of funding within the EU.</p>
+              <p>However, how exactly these funds are being spent within the member states itself is not transparent. Since the ESIF datasets are  hosted on the respective websites of the member countries, it hasn’t been possible to have a consolidated overview of all the available sources and the distribution of the money down to the transactional level. In that sense, this project is unique for it unifies the available datasets of fund distribution on one website.</p>
+              <p>This data collection aims to increase fiscal transparency in the European Union.</p>
+              <p>We invite data journalists, civil society organisations and interested citizens to analyse and track money flows within the EU.</p>
+              <p>If you have any questions on the methodology, please reach out <a href="mailto:anna.alberts@okfn.de">anna.alberts@okfn.de</a></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: The Teams Behind this Project -->
+      <div class="modal fade" id="team" tabindex="-1" role="dialog" aria-labelledby="data">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="teamLabel">The Teams Behind this Project</h4>
+            </div>
+            <div class="modal-body">
+              <p>This is a joint collaboration between the teams of <a href="https://okfn.de/en/">Open Knowledge Germany</a> and <a href="https://okfn.org">Open Knowledge International</a> (OKI). The technological architecture is provided by <a href="http://next.openspending.org">OpenSpending</a>, which is an OKI project.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modals - end -->
       <footer class="main-footer">
         <div class="row">
           <div class="col-sm-12 col-md-5 text-center content-block">
@@ -60,8 +153,8 @@
           <div class="col-sm-4 col-md-3 content-block">
             <h4 class="content-block-title">About this project</h4>
             <ul class="list-footer">
-              <li><a href="#">The Goal</a></li>
-              <li><a href="#">The Teams Behind this Project</a></li>
+              <li><a href="#goal" data-toggle="modal">The Goal</a></li>
+              <li><a href="#team" data-toggle="modal">The Teams Behind this Project</a></li>
               <li><a href="https://okfn.org/privacy-policy/">Legal / Privacy / Licensing</a></li>
             </ul>
           </div>
