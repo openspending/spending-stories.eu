@@ -9,8 +9,9 @@ var application = require('./application');
 // some 3rd-party libraries
 window.jQuery = window.$ = $;
 window.d3 = d3;
+require('os-bootstrap/dist/js/os-bootstrap');
 
-$(function() {
+$(function () {
   application.bootstrap();
 });
 
