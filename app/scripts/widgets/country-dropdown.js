@@ -1,7 +1,5 @@
 'use strict';
 
-/* global window */
-
 var _ = require('lodash');
 var $ = require('jquery');
 

@@ -11,7 +11,7 @@ window.jQuery = window.$ = $;
 window.d3 = d3;
 require('os-bootstrap/dist/js/os-bootstrap');
 
-$(function () {
+$(function() {
   application.bootstrap();
 });
 

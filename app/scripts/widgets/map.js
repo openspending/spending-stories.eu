@@ -42,19 +42,19 @@ function render(container, options) {
           .data(options.data)
           .enter()
           .append('a')
-          .attr('xlink:href', function (datum) {
+          .attr('xlink:href', function(datum) {
             var code = datum.properties.iso_a2;
             var url = options.getItemUrl(code);
             var country = _.get(options, 'countries.' + code);
             return _.isObject(country) ? url : null;
           })
-          .filter(function (datum) {
+          .filter(function(datum) {
             if (datum.properties.iso_a2 == options.countryCode) {
               $(this).addClass('active-country');
             }
             return this;
           })
-          .filter(function () {
+          .filter(function() {
             if (!$(this).attr('href'))
               $(this).addClass('inactive-country');
             return this;
