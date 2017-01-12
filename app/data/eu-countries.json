@@ -10,7 +10,7 @@
   {"name": "Finland",        "shortCode": "FI", "longCode": "FIN"},
   {"name": "France",         "shortCode": "FR", "longCode": "FRA"},
   {"name": "Germany",        "shortCode": "DE", "longCode": "DEU"},
-  {"name": "Greece",         "shortCode": "GR", "longCode": "GRC"},
+  {"name": "Greece",         "shortCode": "EL", "longCode": "???"},
   {"name": "Hungary",        "shortCode": "HU", "longCode": "HUN"},
   {"name": "Ireland",        "shortCode": "IE", "longCode": "IRL"},
   {"name": "Italy",          "shortCode": "IT", "longCode": "ITA"},
