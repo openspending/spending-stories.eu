@@ -12,6 +12,7 @@ var countryDropdown = require('./widgets/country-dropdown');
 var map = require('./widgets/map');
 var topBeneficiaries = require('./widgets/top-beneficiaries');
 var visualizations = require('./widgets/visualizations');
+var treemap = require('./widgets/treemap');
 
 // This function contains some hard-code.
 function getRouteInfo() {
@@ -69,6 +70,14 @@ function getEmbedItems(countryCode) {
   return result;
 }
 
+function getCountryPageUrl(countryCode) {
+  return 'country.html?country=' + encodeURIComponent(countryCode);
+}
+
+function navigateToCountryPage(countryCode) {
+  window.location.href = getCountryPageUrl(countryCode);
+}
+
 function bootstrap() {
   var route = getRouteInfo();
   if (route.isCountryPage || route.isCountryDetailsPage) {
@@ -89,12 +98,25 @@ function bootstrap() {
     countryDropdown.render($('#country-dropdown'), {
       countryCode: route.countryCode,
       countries: getCountriesWithData(countries),
-      baseUrl: 'country.html'
+      onSelectItem: navigateToCountryPage
     });
     countryList.render($('#country-list').empty(), {
       countryCode: route.countryCode,
       countries: getCountriesWithData(countries),
-      baseUrl: 'country.html'
+      getItemUrl: getCountryPageUrl
+    });
+    treemap.render($('#visualization-by-countries'), {
+      endpoint: config.endpoint,
+      dataset: config.dataset,
+      state: config.visualizations.byCountries,
+      formatValue: formatValue,
+      onSelectItem: navigateToCountryPage,
+      names: _.chain(countries)
+        .map(function(item) {
+          return [item.code, item.name];
+        })
+        .fromPairs()
+        .value()
     });
     return countries;
   });
@@ -106,7 +128,7 @@ function bootstrap() {
       countries: getCountriesWithData(results[1]),
       width: $(window).width(),
       height: $(window).height(),
-      baseUrl: 'country.html'
+      getItemUrl: getCountryPageUrl
     });
     return results;
   });

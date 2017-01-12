@@ -8,7 +8,7 @@ var $ = require('jquery');
 function render(container, options) {
   options = _.extend({
     countries: [],
-    baseUrl: ''
+    onSelectItem: _.identity
   }, options);
   container = $(container);
   _.each(options.countries, function(country) {
@@ -20,9 +20,7 @@ function render(container, options) {
     }
   });
   container.on('change', function() {
-    var code = $(this).val();
-    var url = options.baseUrl + '?country=' + encodeURIComponent(code);
-    window.location.href = url;
+    options.onSelectItem($(this).val());
   });
 }
 

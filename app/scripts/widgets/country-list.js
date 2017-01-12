@@ -4,13 +4,16 @@ var _ = require('lodash');
 var $ = require('jquery');
 
 function render(container, options) {
+  if (!container) {
+    return;
+  }
   options = _.extend({
     countries: [],
-    baseUrl: ''
+    getItemUrl: _.constant('javascript:void(0)')
   }, options);
   var ul = $('<ul>').addClass('list-country');
   _.each(options.countries, function(country) {
-    var url = options.baseUrl + '?country=' + encodeURIComponent(country.code);
+    var url = options.getItemUrl(country.code);
     $('<li>')
       .addClass(country.code == options.countryCode ? 'selected' : '')
       .append(

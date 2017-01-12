@@ -16,6 +16,7 @@ var frontDataDir = path.join(frontSrcDir, 'data');
 var nodeModulesDir = path.join(__dirname, 'node_modules');
 
 var publicDir = path.join(__dirname, 'public');
+var publicScriptsDir = path.join(publicDir, 'scripts');
 var publicStylesDir = path.join(publicDir, 'styles');
 var publicImagesDir = path.join(publicDir, 'images');
 var publicFontsDir = path.join(publicDir, 'fonts');
@@ -25,7 +26,9 @@ gulp.task('default', [
   'app.styles',
   'app.images',
   'app.fonts',
-  'app.data'
+  'app.data',
+  'vendor.scripts',
+  'vendor.styles'
 ]);
 
 gulp.task('app.styles', function() {
@@ -55,4 +58,19 @@ gulp.task('app.fonts', function() {
 gulp.task('app.data', function() {
   return gulp.src(path.join(frontDataDir, '/**/*'))
     .pipe(gulp.dest(publicDataDir));
+});
+
+gulp.task('vendor.styles', function() {
+  return gulp.src([
+    path.join(nodeModulesDir, 'babbage.ui/dist/babbage.css')
+  ])
+    .pipe(gulp.dest(publicStylesDir));
+});
+
+gulp.task('vendor.scripts', function() {
+  return gulp.src([
+    path.join(nodeModulesDir, 'babbage.ui/dist/babbage-core.min.js'),
+    path.join(nodeModulesDir, 'babbage.ui/dist/babbage-core.min.js.map')
+  ])
+    .pipe(gulp.dest(publicScriptsDir));
 });
