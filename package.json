@@ -15,6 +15,8 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.1.4",
     "lodash": "^4.6.1",
+    "marked": "^0.3.6",
+    "nunjucks": "^3.0.0",
     "os-bootstrap": "git+https://github.com/openspending/os-bootstrap.git"
   },
   "devDependencies": {
