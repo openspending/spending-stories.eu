@@ -1,31 +1,61 @@
 {
   "endpoint": "http://next.openspending.org/api/3",
-  "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2007-2020",
-  "countryCodeDimension": "administrative_classification_2.beneficiary_country_code",
+  "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full",
+  "countryCodeDimension": "geo_source_Country_code.Country_code",
   "queries": {
     "totalSubsidies": {
-      "aggregates": "total_amount.sum",
-      "drilldown": "activity_funding_period_number.funding_period_number"
+      "aggregates": "Cost_of_the_project.sum",
+      "drilldown": "fin_source_Funding_period.Funding_period"
     },
     "topBeneficiaries": {
-      "aggregates": "total_amount.sum",
-      "drilldown": "recipient_2.beneficiary_name",
+      "aggregates": "Cost_of_the_project.sum",
+      "drilldown": "recipient_Beneficiary_name.Beneficiary_name",
       "pagesize": 10,
-      "order": "total_amount.sum:desc"
+      "order": "Cost_of_the_project.sum:desc"
     }
   },
   "visualizations": {
     "byCountries": {
-      "aggregates": "total_amount.sum",
-      "group": ["administrative_classification_2.beneficiary_country_code"]
+      "aggregates": "Cost_of_the_project.sum",
+      "group": ["geo_source_Country_code.Country_code"]
     }
   },
   "embed": [
-    "http://next.openspending.org/viewer/embed/treemap/6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2007-2020?lang=en&measure=total_amount.sum&groups%5B%5D=recipient_2.beneficiary_name&filters%5Badministrative_classification_2.beneficiary_country_code%5D%5B%5D=PL&order=total_amount.sum%7Cdesc"
+    "http://next.openspending.org/viewer/embed/treemap/6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full?lang=en&measure=Cost_of_the_project.sum&groups%5B%5D=recipient_Beneficiary_name.Beneficiary_name&filters%5Bgeo_source_Country_code.Country_code%5D%5B%5D=PL&order=Cost_of_the_project.sum%7Cdesc"
   ],
   "valueFormattingScale": {
     "Billions": 1000000000,
     "Millions": 1000000,
     "Thousands": 1000
+  },
+  "countryNames": {
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "CY": "Cyprus",
+    "CZ": "Czech Republic",
+    "DE": "Germany",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "ES": "Spain",
+    "FI": "Finland",
+    "FR": "France",
+    "EL": "Greece",
+    "HU": "Hungary",
+    "HR": "Croatia",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "LV": "Latvia",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SE": "Sweden",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
+    "UK": "United Kingdom"
   }
 }

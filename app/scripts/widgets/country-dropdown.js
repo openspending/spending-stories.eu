@@ -9,14 +9,18 @@ function render(container, options) {
     onSelectItem: _.identity
   }, options);
   container = $(container);
-  _.each(options.countries, function(country) {
-    var option = $('<option>').attr('value', country.code)
-      .text(country.name).appendTo(container);
+  _.chain(options.countries)
+    .values()
+    .sortBy('name')
+    .each(function(country) {
+      var option = $('<option>').attr('value', country.code)
+        .text(country.name).appendTo(container);
 
-    if (options.countryCode == country.code) {
-      option.attr('selected', 'on');
-    }
-  });
+      if (options.countryCode == country.code) {
+        option.attr('selected', 'on');
+      }
+    })
+    .value();
   container.on('change', function() {
     options.onSelectItem($(this).val());
   });

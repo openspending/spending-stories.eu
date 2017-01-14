@@ -71,7 +71,14 @@ function getEmbedItems(countryCode) {
 }
 
 function getCountryPageUrl(countryCode) {
-  return 'country.html?country=' + encodeURIComponent(countryCode);
+  if (
+    (countryCode === undefined) ||
+    (countryCode === null) ||
+    (countryCode === '')
+  ) {
+    return '/';
+  }
+  return '/country.html?country=' + encodeURIComponent(countryCode);
 }
 
 function navigateToCountryPage(countryCode) {
