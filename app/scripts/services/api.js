@@ -3,7 +3,6 @@
 var _ = require('lodash');
 var downloader = require('./downloader');
 var config = require('../../../config.json');
-var countries = require('../../data/eu-countries.json');
 var Promise = require('bluebird');
 
 var defaultGeoDataUrl = 'public/data/eu-countries-polygons.json';
@@ -20,13 +19,13 @@ function processApiResponse(response) {
 }
 
 function getCountries() {
-  var emptyResponse = _.chain(countries)
-    .map(function(country) {
+  var result = _.chain(config.countryNames)
+    .map(function(name, code) {
       return [
-        country.shortCode,
+        code,
         {
-          name: country.name,
-          code: country.shortCode,
+          name: name,
+          code: code,
           isDataAvailable: false
         }
       ];
@@ -35,40 +34,25 @@ function getCountries() {
     .value();
 
   if (!config.countryCodeDimension) {
-    return Promise.resolve(emptyResponse);
+    return Promise.resolve(result);
   }
   var url = config.endpoint + '/cubes/' + encodeURIComponent(config.dataset) +
     '/members/' + encodeURIComponent(config.countryCodeDimension);
   return downloader.getJson(url)
     .then(function(response) {
       var key = config.countryCodeDimension;
-      var codes = _.chain(response.data)
+      _.chain(response.data)
         .map(function(item) {
           return item[key];
         })
         .filter()
-        .value();
-      if (codes.length == 0) {
-        return emptyResponse;
-      }
-      var codeFormat = codes[0].length == 2 ? 'shortCode' : 'longCode';
-      return _.chain(countries)
-        .map(function(country) {
-          var codeToFind = _.lowerCase(country[codeFormat]);
-          var isDataAvailable = !!_.find(codes, function(code) {
-            return _.lowerCase(code) == codeToFind;
-          });
-          return [
-            country.shortCode,
-            {
-              name: country.name,
-              code: country[codeFormat],
-              isDataAvailable: isDataAvailable
-            }
-          ];
+        .each(function(code) {
+          if (code in result) {
+            result[code].isDataAvailable = true;
+          }
         })
-        .fromPairs()
         .value();
+      return result;
     });
 }
 

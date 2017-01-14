@@ -1,28 +1,28 @@
 'use strict';
 
-/* global window */
-
 var _ = require('lodash');
 var $ = require('jquery');
 
 function render(container, options) {
   options = _.extend({
     countries: [],
-    baseUrl: ''
+    onSelectItem: _.identity
   }, options);
   container = $(container);
-  _.each(options.countries, function(country) {
-    var option = $('<option>').attr('value', country.code)
-      .text(country.name).appendTo(container);
+  _.chain(options.countries)
+    .values()
+    .sortBy('name')
+    .each(function(country) {
+      var option = $('<option>').attr('value', country.code)
+        .text(country.name).appendTo(container);
 
-    if (options.countryCode == country.code) {
-      option.attr('selected', 'on');
-    }
-  });
+      if (options.countryCode == country.code) {
+        option.attr('selected', 'on');
+      }
+    })
+    .value();
   container.on('change', function() {
-    var code = $(this).val();
-    var url = options.baseUrl + '?country=' + encodeURIComponent(code);
-    window.location.href = url;
+    options.onSelectItem($(this).val());
   });
 }
 

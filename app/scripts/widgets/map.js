@@ -6,11 +6,14 @@ var d3 = require('d3');
 
 function render(container, options) {
   container = $(container).get(0);
+  if (!container) {
+    return;
+  }
   options = _.extend({
     data: {},
     width: 0,
     height: 0,
-    baseUrl: '',
+    getItemUrl: _.constant('javascript:void(0)'),
     countries: null
   }, options);
 
@@ -39,19 +42,19 @@ function render(container, options) {
           .data(options.data)
           .enter()
           .append('a')
-          .attr('xlink:href', function (datum) {
+          .attr('xlink:href', function(datum) {
             var code = datum.properties.iso_a2;
-            var url = options.baseUrl + '?country=' + encodeURIComponent(code);
+            var url = options.getItemUrl(code);
             var country = _.get(options, 'countries.' + code);
             return _.isObject(country) ? url : null;
           })
-          .filter(function (datum) {
+          .filter(function(datum) {
             if (datum.properties.iso_a2 == options.countryCode) {
               $(this).addClass('active-country');
             }
             return this;
           })
-          .filter(function () {
+          .filter(function() {
             if (!$(this).attr('href'))
               $(this).addClass('inactive-country');
             return this;

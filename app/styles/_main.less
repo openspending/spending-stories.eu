@@ -421,3 +421,24 @@ cite{
     height: inherit;
   }
 }
+
+// Specificity hack
+.treemap-chart.treemap-chart {
+  min-height: 0;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.treemap-list {
+  .treemap-table {
+    thead th, thead td {
+      font-weight: bold;
+    }
+
+    tbody td {
+      cursor: pointer;
+    }
+  }
+}
