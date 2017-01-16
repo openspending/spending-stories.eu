@@ -9,6 +9,13 @@
     "no-implicit-coercion": 0,
     "no-lonely-if": 0,
     "no-invalid-this": 0,
-    "comma-dangle": [2, "never"]
+    "comma-dangle": [2, "never"],
+    "indent": [2, 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": {"parameters": 1, "body": 1},
+      "FunctionExpression": {"parameters": 1, "body": 1}
+    }]
   }
 }
