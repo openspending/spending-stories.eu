@@ -15,14 +15,14 @@
     "http-auth": "^3.1.1",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.1.4",
-    "lodash": "^4.6.1",
+    "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "nunjucks": "^3.0.0",
     "os-bootstrap": "git+https://github.com/openspending/os-bootstrap.git"
   },
   "devDependencies": {
     "chai": "^3.4.0",
-    "eslint": "^3.11.1",
+    "eslint": "^3.13.1",
     "eslint-config-google": "^0.7.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
@@ -44,7 +44,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha tests/*.js",
-    "review": "eslint app tests gulpfile.js webpack.config.js",
+    "review": "eslint gulpfile.js webpack.config.js app/scripts/* tests/*",
+    "review2": "eslint app/scripts/widgets/map.js",
     "build:assets": "gulp",
     "build:app": "webpack --hide-modules --config webpack.config.js",
     "build": "npm run build:assets && npm run build:app"

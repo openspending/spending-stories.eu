@@ -19,15 +19,13 @@ function processApiResponse(response) {
 }
 
 function getCountries() {
-  var result = _.chain(config.countryNames)
-    .map(function(name, code) {
+  var result = _.chain(config.countries)
+    .map(function(country) {
       return [
-        code,
-        {
-          name: name,
-          code: code,
+        country.code,
+        _.extend({}, country, {
           isDataAvailable: false
-        }
+        })
       ];
     })
     .fromPairs()
@@ -51,6 +49,7 @@ function getCountries() {
             result[code].isDataAvailable = true;
           }
         })
+        .values()
         .value();
       return result;
     });
