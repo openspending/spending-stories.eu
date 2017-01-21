@@ -1,27 +1,27 @@
 {
   "endpoint": "http://next.openspending.org/api/3",
   "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full",
-  "countryCodeDimension": "geo_source_Country_code.Country_code",
+  "countryCodeDimension": "geo_source_beneficiary_country.beneficiary_country_code",
   "queries": {
     "totalSubsidies": {
-      "aggregates": "Cost_of_the_project.sum",
-      "drilldown": "fin_source_Funding_period.Funding_period"
+      "aggregates": "amount.sum",
+      "drilldown": "fin_source_funding_period.funding_period"
     },
     "topBeneficiaries": {
-      "aggregates": "Cost_of_the_project.sum",
-      "drilldown": "recipient_Beneficiary_name.Beneficiary_name",
+      "aggregates": "amount.sum",
+      "drilldown": "recipient_beneficiary_name.beneficiary_name",
       "pagesize": 10,
-      "order": "Cost_of_the_project.sum:desc"
+      "order": "amount.sum:desc"
     }
   },
   "visualizations": {
     "byCountries": {
-      "aggregates": "Cost_of_the_project.sum",
-      "group": ["geo_source_Country_code.Country_code"]
+      "aggregates": "amount.sum",
+      "group": ["geo_source_beneficiary_country.beneficiary_country_code"]
     }
   },
   "embed": [
-    "http://next.openspending.org/viewer/embed/treemap/6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full?lang=en&measure=Cost_of_the_project.sum&groups%5B%5D=recipient_Beneficiary_name.Beneficiary_name&filters%5Bgeo_source_Country_code.Country_code%5D%5B%5D=PL&order=Cost_of_the_project.sum%7Cdesc"
+    "http://next.openspending.org/viewer/embed/treemap/6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full?lang=en&measure=amount.sum&groups%5B%5D=recipient_beneficiary_name.beneficiary_name&filters%5Bgeo_source_beneficiary_country.beneficiary_country_code%5D%5B%5D=PL&order=amount.sum%7Cdesc"
   ],
   "valueFormattingScale": {
     "Billions": 1000000000,
