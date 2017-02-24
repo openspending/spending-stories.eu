@@ -12,7 +12,6 @@ var countryDropdown = require('./widgets/country-dropdown');
 var map = require('./widgets/map');
 var topBeneficiaries = require('./widgets/top-beneficiaries');
 var visualizations = require('./widgets/visualizations');
-var treemap = require('./widgets/treemap');
 
 // This function contains some hard-code.
 function getRouteInfo() {
@@ -28,7 +27,6 @@ function getRouteInfo() {
     result.isIndexPage = (parts.pathname == '/index.html') ||
       (parts.pathname == '/') || (parts.pathname == '');
     result.isCountryPage = parts.pathname == '/country.html';
-    result.isCountryDetailsPage = parts.pathname == '/country-details.html';
 
     if (_.isObject(parts.query)) {
       result.countryCode = parts.query.country || null;
@@ -112,19 +110,6 @@ function bootstrap() {
       countries: getCountriesWithData(countries),
       getItemUrl: getCountryPageUrl
     });
-    treemap.render($('#visualization-by-countries'), {
-      endpoint: config.endpoint,
-      dataset: config.dataset,
-      state: config.visualizations.byCountries,
-      formatValue: formatValue,
-      onSelectItem: navigateToCountryPage,
-      names: _.chain(countries)
-        .map(function(item) {
-          return [item.code, item.name];
-        })
-        .fromPairs()
-        .value()
-    });
     return countries;
   });
 
@@ -146,6 +131,7 @@ function bootstrap() {
       items: getEmbedItems(countryCode)
     });
 
+    // TODO: It should be a link to OS Viewer
     $('#country-details-link').attr('href',
       'country-details.html?country=' + encodeURIComponent(countryCode));
 
