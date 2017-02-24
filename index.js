@@ -44,7 +44,7 @@ env.addFilter('marked', marked);
 
 // pages
 app.get(
-  /\/(|index\.html|country\.html|country-details\.html)$/,
+  /\/(|index\.html|country\.html)$/,
   middlewares,
   function(req, res) {
     var template = (req.params[0] != '' ? req.params[0] : 'index.html');
