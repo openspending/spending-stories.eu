@@ -26,9 +26,7 @@ gulp.task('default', [
   'app.styles',
   'app.images',
   'app.fonts',
-  'app.data',
-  'vendor.scripts',
-  'vendor.styles'
+  'app.data'
 ]);
 
 gulp.task('app.styles', function() {
@@ -58,19 +56,4 @@ gulp.task('app.fonts', function() {
 gulp.task('app.data', function() {
   return gulp.src(path.join(frontDataDir, '/**/*'))
     .pipe(gulp.dest(publicDataDir));
-});
-
-gulp.task('vendor.styles', function() {
-  return gulp.src([
-    path.join(nodeModulesDir, 'babbage.ui/dist/babbage.css')
-  ])
-    .pipe(gulp.dest(publicStylesDir));
-});
-
-gulp.task('vendor.scripts', function() {
-  return gulp.src([
-    path.join(nodeModulesDir, 'babbage.ui/dist/babbage-core.min.js'),
-    path.join(nodeModulesDir, 'babbage.ui/dist/babbage-core.min.js.map')
-  ])
-    .pipe(gulp.dest(publicScriptsDir));
 });

@@ -1,45 +1,23 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-4 col-md-offset-8">
-    <div class="content-years">2007-2013 | 2014-2020</div>
-  </div>
+<div class="clearfix">
+  <funding-periods class="pull-right"></funding-periods>
 </div>
 <div class="row">
   <div class="col-sm-12 col-md-8">
     <div class="country-data">
       <div class="content-header">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 col-lg-7">
-            <h2 id="country-name" class="text-uppercase content-header-title">N/A</h2>
-          </div>
-          <div class="col-sm-4 col-md-5 col-lg-5 content-header-buttons">
-            <ul class="list-inline">
-              <li>
-                <a class="btn btn-default" href="javascript:void(0)">Download</a>
-              </li>
-              <li>
-                <a id="country-details-link" class="btn btn-default" href="javascript:void(0)">View Details</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <country-details></country-details>
       </div>
       <div class="content-block">
-        <div id="embed-container">
-          <div class="content-grid-item content-grid-item-lg">
-            <h2 id="total-subsidies">N/A</h2>
-            <p>EU ESIF-budget 2014-2020</p>
-          </div>
-          <div class="content-grid-item">
-            <h3>Top 10 Recipients:</h3>
-            <div id="top-beneficiaries">No data.</div>
-          </div>
-        </div>
+        <visualizations>
+          <total-subsidies></total-subsidies>
+          <country-description></country-description>
+        </visualizations>
       </div>
     </div>
   </div>
-  <div id="country-list" class="col-md-4 visible-md visible-lg">Loading...</div>
+  <div class="col-md-4 visible-md visible-lg"><country-list></country-list></div>
 </div>
 {% endblock %}

@@ -35,5 +35,10 @@ module.exports = {
       {test: /\.json/, loader: 'json'}
     ]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.common.js'
+    }
+  },
   plugins: plugins
 };
