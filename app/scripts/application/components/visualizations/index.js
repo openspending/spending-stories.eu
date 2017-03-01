@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var subsidyStories = require('../../services/subsidy-stories');
 
 module.exports = {

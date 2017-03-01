@@ -16,7 +16,6 @@ var frontDataDir = path.join(frontSrcDir, 'data');
 var nodeModulesDir = path.join(__dirname, 'node_modules');
 
 var publicDir = path.join(__dirname, 'public');
-var publicScriptsDir = path.join(publicDir, 'scripts');
 var publicStylesDir = path.join(publicDir, 'styles');
 var publicImagesDir = path.join(publicDir, 'images');
 var publicFontsDir = path.join(publicDir, 'fonts');

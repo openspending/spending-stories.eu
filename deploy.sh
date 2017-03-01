@@ -16,7 +16,7 @@ git checkout ${DEPLOY_BRANCH} 2>/dev/null || git checkout -b ${DEPLOY_BRANCH}
 
 if [ $? == 0 ]; then
   # install dependencies, build and add everything to git
-  if npm install && npm run build && npm run review && npm test; then
+  if npm install && NODE_ENV=production npm run build && npm run review && npm test; then
     rm ./public/.gitignore 2>/dev/null
     git add --force ./public
     git commit -m "Build"
