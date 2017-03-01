@@ -8,7 +8,6 @@ var application = require('./application');
 // some 3rd-party libraries
 window.jQuery = window.$ = $;
 window.d3 = d3;
-//require('os-bootstrap/dist/js/os-bootstrap');
 require('os-bootstrap/js/modal');
 
 $(function() {

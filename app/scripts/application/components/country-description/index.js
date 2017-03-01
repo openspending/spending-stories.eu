@@ -1,8 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
 var Vuex = require('vuex');
-var subsidyStories = require('../../services/subsidy-stories');
 
 module.exports = {
   template: require('./template.html'),
