@@ -1,0 +1,8 @@
+<div>
+  <div v-if="!isLoaded" class="loader"></div>
+  <ul v-if="isLoaded" class="list-country">
+    <li v-for="country in countries" v-bind:class="{selected: country.code == selected}">
+      <a v-bind:href="getCountryPageUrl(country.code)">{{ country.name }}</a>
+    </li>
+  </ul>
+</div>

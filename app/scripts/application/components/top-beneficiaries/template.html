@@ -1,0 +1,13 @@
+<div class="content-grid-item">
+  <h3>Top 10 Recipients:</h3>
+  <div v-bind:class="{loader: !isLoaded}">
+    <ul v-if="isLoaded" class="list-unstyled list-md">
+      <li class="beneficiary" v-for="item in items">
+        <div class="row">
+          <div class="col-xs-8">{{ item.name }}</div>
+          <div class="col-xs-4 total-budget">{{ formatValue(item.value) }}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

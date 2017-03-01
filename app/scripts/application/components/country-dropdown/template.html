@@ -1,0 +1,4 @@
+<select v-if="isLoaded" v-model="countryCode">
+  <option value="">Select Country</option>
+  <option v-for="country in countries" v-bind:value="country.code">{{ country.name }}</option>
+</select>

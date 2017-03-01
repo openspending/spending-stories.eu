@@ -176,18 +176,10 @@
   margin-top: @grid-gutter-width;
   margin-bottom: @grid-gutter-width*2;
 
-  &:after{
-    top: 20%;
-    right: @grid-gutter-width/3;
-    transform: scaleY(0.6);
-    position: absolute;
-    display: inline-block;
-    content: 'V';
-  }
-
   .form-control{
     appearance: none;
     height: inherit;
+    background: data-uri('image/svg+xml;charset=UTF-8', './arrow.svg') right center no-repeat;
   }
 }
 
@@ -313,6 +305,14 @@ cite{
   color: @gray-light;
   margin-top: @grid-gutter-width/2;
   margin-bottom: @grid-gutter-width/2;
+  white-space: nowrap;
+
+  a {
+    color: inherit;
+    &.selected {
+      .text-picton-blue;
+    }
+  }
 
   @media (min-width: @screen-md-min){
     margin-left: @grid-gutter-width;
@@ -440,5 +440,30 @@ cite{
     tbody td {
       cursor: pointer;
     }
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  text-align: center;
+  padding: 1em;
+  &:before {
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+    width: 2em;
+    height: 2em;
+    border: 0.2em solid lighten(@gray-light, 15%);
+    border-top-color: @colour-picton-blue;
+    border-radius: 50%;
+    animation: rotating 1s linear infinite;
   }
 }

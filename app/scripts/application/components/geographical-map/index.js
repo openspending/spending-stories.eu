@@ -3,9 +3,11 @@
 var _ = require('lodash');
 var $ = require('jquery');
 var d3 = require('d3');
+var Vuex = require('vuex');
+var Promise = require('bluebird');
+var subsidyStories = require('../../services/subsidy-stories');
 
 function render(container, options) {
-  container = $(container).get(0);
   if (!container) {
     return;
   }
@@ -70,4 +72,36 @@ function render(container, options) {
     .attr('fill', 'rgba(0, 0, 0, 0.3)');
 }
 
-module.exports.render = render;
+module.exports = {
+  template: '<div></div>',
+  computed: _.extend({}, Vuex.mapState([
+    'countryCode'
+  ])),
+  methods: _.extend({}, Vuex.mapActions([
+    'getGeoData',
+    'getCountries'
+  ])),
+  mounted: function() {
+    var that = this;
+
+    Promise.all([
+      that.getGeoData(),
+      that.getCountries()
+    ]).then(function(results) {
+      var geojson = results[0];
+      var countries = results[1];
+
+      render(that.$el, {
+        data: geojson,
+        countryCode: that.countryCode,
+        countries: _.chain(countries)
+          .filter('isDataAvailable')
+          .sortBy('name')
+          .value(),
+        width: $(window).width(),
+        height: $(window).height(),
+        getItemUrl: subsidyStories.getCountryPageUrl
+      });
+    });
+  }
+};
