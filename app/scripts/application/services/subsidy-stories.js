@@ -7,7 +7,7 @@ var config = require('../../../../config.json');
 var utils = require('./utils');
 var downloader = require('./downloader');
 
-var defaultGeoDataUrl = 'public/data/eu-countries-polygons.json';
+var defaultGeoDataUrl = 'public/data/eu.json';
 var defaultCountryDescriptionUrl = 'public/data/country-descriptions';
 
 var availablePeriods = ['2007-2013', '2014-2020'];
@@ -138,11 +138,11 @@ function navigateToCountryPage(countryCode) {
 
 function getCSVFileUrl(countryCode, periods) {
   var period = mergePeriods(periods);
-  var countryCodeLower = _.lowerCase(countryCode);
+  countryCode = _.lowerCase(countryCode);
   return [
     config.api.datastore,
     '/' + config.api.dataset.split(':')[0],  // owner ID
-    '/' + countryCodeLower + '-eu-esif-funds-beneficiaries-2000-2020-full',
+    '/' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full',
     '/data',
     '/' + countryCode + '-eu-esif-funds-beneficiaries-' + period + '-full.csv'
   ].join('');
@@ -150,12 +150,12 @@ function getCSVFileUrl(countryCode, periods) {
 
 function getCountryDetailsUrl(countryCode, periods) {
   var query = prepareOSViewerQueryParams(countryCode, periods, 'treemap');
-  var countryCodeLower = _.lowerCase(countryCode);
+  countryCode = _.lowerCase(countryCode);
 
   return [
     config.osViewerUrl,
     '/' + config.api.dataset.split(':')[0],  // owner ID
-    ':' + countryCodeLower + '-eu-esif-funds-beneficiaries-2000-2020-full' +
+    ':' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full' +
     '?' + prepareQueryString(query)
   ].join('');
 }
