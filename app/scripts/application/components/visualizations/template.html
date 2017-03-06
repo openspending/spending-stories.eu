@@ -1,6 +1,9 @@
 <div>
   <slot></slot>
-  <div class="content-grid-item" v-for="visualization in visualizations">
+  <div class="loader" v-if="!isLoaded"></div>
+  <div class="content-grid-item"
+    v-if="isLoaded && isAvailable"
+    v-for="visualization in visualizations">
     <div style="position: relative; min-height: 250vh">
       <iframe v-bind:src="getVisualizationUrl(visualization)"
         width="100%" height="100%" border="0" frameborder="0" seamless="on"

@@ -39,34 +39,9 @@
   width: 100%;
   height: auto;
 
-  @media (max-width: @screen-xs-max/2){
-    min-height: 200vw;
-  }
-  @media (max-width: @screen-xs-max){
-    min-height: 175vw;
-  }
-  @media (min-width: @screen-sm-min){
-    min-height: 150vw;
-  }
-  @media (min-width: @screen-md-min){
-    min-height: 135vw;
-  }
-  @media (min-width: @screen-lg-min){
-    min-height: 50vw;
-  }
-
   svg {
     background-color: white;
     overflow: visible;
-
-    @media (max-width: @screen-md-max){
-      margin-left: 20%;
-    }
-
-    @media (min-width: @screen-lg-min){
-      margin-left: 50%;
-    }
-
   }
 
   a{
@@ -102,11 +77,12 @@
 
 }
 
-.hero-sidebar{
+.hero-nav {
+
   @media (min-width: @screen-lg-min){
-    position: absolute;
-    top: @grid-gutter-width*2;
+    margin-top: @grid-gutter-width * 2;
   }
+
 }
 
 .hero-title{
@@ -174,7 +150,7 @@
 
   position: relative;
   margin-top: @grid-gutter-width;
-  margin-bottom: @grid-gutter-width*2;
+  margin-bottom: @grid-gutter-width;
 
   .form-control{
     appearance: none;
@@ -312,6 +288,10 @@ cite{
     &.selected {
       .text-picton-blue;
     }
+
+    &, &:hover, &:focus, &:active, &:visited {
+      text-decoration: none;
+    }
   }
 
   @media (min-width: @screen-md-min){
@@ -383,10 +363,14 @@ cite{
 .main-footer{
   padding: @grid-gutter-width*2 0 @grid-gutter-width;
 
-  @media (max-width: @screen-sm-max){
+  @media (max-width: @screen-md-max) {
     padding-bottom: 0;
     text-align: center;
 
+    img {
+      margin: 0 auto;
+    }
+    
     .content-block{
       margin: @grid-gutter-width 0;
     }

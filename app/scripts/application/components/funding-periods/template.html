@@ -1,6 +1,6 @@
 <div class="content-years">
   <template v-for="(item, index) in items">
-    <span v-if="index > 0">&nbsp;|&nbsp;</span>
+    <span v-if="index > 0"> | </span>
     <a href="javascript:void(0)" v-on:click="setPeriod(item)" v-bind:class="{selected: isSelected(item)}">{{ item }}</a>
   </template>
 </div>

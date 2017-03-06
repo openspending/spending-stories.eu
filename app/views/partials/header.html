@@ -1,7 +1,7 @@
 <div class="hero-map">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 col-lg-5">
+      <div class="col-md-12 col-lg-5" style="z-index: 1;">
         <div class="hero-sidebar">
           <nav class="hero-nav">
             <ul class="list-hero-nav">
@@ -20,10 +20,10 @@
           <div class="hero-select">
             <country-dropdown class="form-control"></country-dropdown>
           </div>
-            <p> Please note that large amounts of data were scraped (from the web and PDFs), which could have led to errors. Several different amounts are present in the data, so please compare carefully. </p>
+          <p> Please note that large amounts of data were scraped (from the web and PDFs), which could have led to errors. Several different amounts are present in the data, so please compare carefully. </p>
         </div>
       </div>
+      <geographical-map class="col-lg-7"></geographical-map>
     </div>
   </div>
-  <geographical-map></geographical-map>
 </div>

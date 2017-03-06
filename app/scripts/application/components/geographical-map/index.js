@@ -26,11 +26,37 @@ function render(container, options) {
   // Map stroke width
   var strokeWidth = 2;
 
+  // Calculate center of geo object, and move it a bit to left and top -
+  // there is enough free space for that
+  var bounds = d3.geo.bounds({
+    type: 'FeatureCollection',
+    features: options.data
+  });
+
+  var center = [
+    - (bounds[0][0] + bounds[1][0]) / 2 - 5,
+    (bounds[0][1] + bounds[1][1]) / 2 - 5
+  ];
+
+  // Remove empty space at the bottom of the map
+  bounds[1][1] -= 5;
+
   // Define map projection
   var projection = d3.geo.mercator()
-    .center([-10, 55])
-    .translate([0, options.height])
-    .scale([options.width]);
+    .center(center)
+    .scale(options.width);
+
+  // Calculate map metrics and aspect ratio to set appropriate
+  // dimensions for SVG container
+  var pixelBounds = _.map(bounds, projection);
+  pixelBounds = [
+    Math.abs(pixelBounds[0][0] - pixelBounds[1][0]),
+    Math.abs(pixelBounds[0][1] - pixelBounds[1][1])
+  ];
+  var aspectRatio = pixelBounds[1] / pixelBounds[0];
+
+  // Offset by half of the height
+  projection.translate([0, pixelBounds[1] / 2]);
 
   // Define path generator
   var path = d3.geo.path()
@@ -40,7 +66,8 @@ function render(container, options) {
   var svg = d3.select(container)
     .append('svg')
     .attr('xmlns:xlink', 'http://www.w3.org/1999/xlink')
-    .attr('viewBox', '0 0 ' + options.width + ' ' + options.height)
+    .attr('viewBox', '0 0 ' + options.width + ' ' +
+      Math.ceil(options.width * aspectRatio))
     .attr('preserveAspectRatio', 'xMinYMin meet');
 
   // Bind data and create one path per GeoJSON feature

@@ -12,9 +12,11 @@ module.exports = {
       value: 0
     };
   },
-  computed: Vuex.mapState([
+  computed: _.extend({}, Vuex.mapState([
     'period'
-  ]),
+  ]), Vuex.mapGetters([
+    'entirePeriod'
+  ])),
   watch: {
     period: function() {
       this.refresh();

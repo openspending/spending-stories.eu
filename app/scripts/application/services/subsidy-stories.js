@@ -7,7 +7,7 @@ var config = require('../../../../config.json');
 var utils = require('./utils');
 var downloader = require('./downloader');
 
-var defaultGeoDataUrl = 'public/data/eu-countries-polygons.json';
+var defaultGeoDataUrl = 'public/data/eu.json';
 var defaultCountryDescriptionUrl = 'public/data/country-descriptions';
 
 var availablePeriods = ['2007-2013', '2014-2020'];
@@ -58,13 +58,15 @@ function prepareAPIQueryParams(countryCode, periods) {
       JSON.stringify(countryCode));
   }
   if (_.isArray(periods) && (periods.length > 0)) {
-    query.cut.push(
-      config.api.periodDimension + ':' +
-      _.chain(periods)
-        .map(JSON.stringify)
-        .join(';')
-        .value()
-    );
+    if (periods.length != availablePeriods.length) {
+      query.cut.push(
+        config.api.periodDimension + ':' +
+        _.chain(periods)
+          .map(JSON.stringify)
+          .join(';')
+          .value()
+      );
+    }
   }
   query.cut = query.cut.join('|');
 
@@ -84,8 +86,10 @@ function prepareOSViewerQueryParams(countryCode, periods, visualizationType) {
   }
 
   if (_.isArray(periods) && (periods.length > 0)) {
-    query['filters[' + config.api.periodDimension + '][]'] =
-      _.map(periods, JSON.stringify);
+    if (periods.length != availablePeriods.length) {
+      query['filters[' + config.api.periodDimension + '][]'] =
+        _.map(periods, JSON.stringify);
+    }
   }
 
   var visualizationId = visualizationIds[visualizationType];
@@ -134,6 +138,7 @@ function navigateToCountryPage(countryCode) {
 
 function getCSVFileUrl(countryCode, periods) {
   var period = mergePeriods(periods);
+  countryCode = _.lowerCase(countryCode);
   return [
     config.api.datastore,
     '/' + config.api.dataset.split(':')[0],  // owner ID
@@ -145,6 +150,7 @@ function getCSVFileUrl(countryCode, periods) {
 
 function getCountryDetailsUrl(countryCode, periods) {
   var query = prepareOSViewerQueryParams(countryCode, periods, 'treemap');
+  countryCode = _.lowerCase(countryCode);
 
   return [
     config.osViewerUrl,
@@ -260,6 +266,7 @@ function getTopBeneficiaries(countryCode, periods) {
 
 module.exports.availableVisualizations = config.visualizations;
 module.exports.availablePeriods = availablePeriods;
+module.exports.mergePeriods = mergePeriods;
 
 module.exports.getCountryPageUrl = getCountryPageUrl;
 module.exports.navigateToCountryPage = navigateToCountryPage;
