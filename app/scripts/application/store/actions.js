@@ -46,6 +46,9 @@ module.exports = {
           throw new Error('Aborted.');
         }
         return data;
+      })
+      .catch(function(data) {
+        // Do noting
       });
   },
 
