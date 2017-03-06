@@ -1,4 +1,5 @@
 <div v-bind:class="{loader: !isLoaded}" class="content-grid-item content-grid-item-lg">
-  <h2 v-if="isLoaded">{{ formatValue(value) }}</h2>
+  <h2 v-if="isLoaded && (value > 0)">{{ formatValue(value) }}</h2>
+  <h2 v-if="isLoaded && (value <= 0)">N/A</h2>
   <p v-if="isLoaded">EU ESIF-budget {{ entirePeriod }}</p>
 </div>
