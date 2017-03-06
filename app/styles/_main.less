@@ -77,8 +77,12 @@
 
 }
 
-.hero-sidebar{
-  padding-top: @grid-gutter-width * 2;
+.hero-nav {
+
+  @media (min-width: @screen-lg-min){
+    margin-top: @grid-gutter-width * 2;
+  }
+
 }
 
 .hero-title{
@@ -359,10 +363,14 @@ cite{
 .main-footer{
   padding: @grid-gutter-width*2 0 @grid-gutter-width;
 
-  @media (max-width: @screen-sm-max){
+  @media (max-width: @screen-md-max) {
     padding-bottom: 0;
     text-align: center;
 
+    img {
+      margin: 0 auto;
+    }
+    
     .content-block{
       margin: @grid-gutter-width 0;
     }

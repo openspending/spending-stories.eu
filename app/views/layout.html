@@ -12,16 +12,16 @@
 
   {% include "partials/header.html" %}
 
-  <div class="container main-content">
+  <div class="container-fluid main-content">
     {% block content %}{% endblock %}
 
     {% include "partials/modals/data.html" %}
     {% include "partials/modals/resources.html" %}
     {% include "partials/modals/goal.html" %}
     {% include "partials/modals/teams.html" %}
-
-    {% include "partials/footer.html" %}
   </div>
+
+  {% include "partials/footer.html" %}
 
 </div>
 

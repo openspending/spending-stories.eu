@@ -32,10 +32,14 @@ function render(container, options) {
     type: 'FeatureCollection',
     features: options.data
   });
+
   var center = [
     - (bounds[0][0] + bounds[1][0]) / 2 - 5,
     (bounds[0][1] + bounds[1][1]) / 2 - 5
   ];
+
+  // Remove empty space at the bottom of the map
+  bounds[1][1] -= 5;
 
   // Define map projection
   var projection = d3.geo.mercator()
