@@ -1,6 +1,6 @@
 {
   "api": {
-    "datastore": "https://datastore.openspending.org",
+    "datastore": "http://datastore.openspending.org",
     "endpoint": "http://next.openspending.org/api/3",
     "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full",
     "measure": "amount.sum",

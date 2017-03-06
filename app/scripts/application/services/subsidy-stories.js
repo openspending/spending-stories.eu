@@ -134,10 +134,11 @@ function navigateToCountryPage(countryCode) {
 
 function getCSVFileUrl(countryCode, periods) {
   var period = mergePeriods(periods);
+  var countryCodeLower = _.lowerCase(countryCode);
   return [
     config.api.datastore,
     '/' + config.api.dataset.split(':')[0],  // owner ID
-    '/' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full',
+    '/' + countryCodeLower + '-eu-esif-funds-beneficiaries-2000-2020-full',
     '/data',
     '/' + countryCode + '-eu-esif-funds-beneficiaries-' + period + '-full.csv'
   ].join('');
@@ -145,11 +146,12 @@ function getCSVFileUrl(countryCode, periods) {
 
 function getCountryDetailsUrl(countryCode, periods) {
   var query = prepareOSViewerQueryParams(countryCode, periods, 'treemap');
+  var countryCodeLower = _.lowerCase(countryCode);
 
   return [
     config.osViewerUrl,
     '/' + config.api.dataset.split(':')[0],  // owner ID
-    ':' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full' +
+    ':' + countryCodeLower + '-eu-esif-funds-beneficiaries-2000-2020-full' +
     '?' + prepareQueryString(query)
   ].join('');
 }
