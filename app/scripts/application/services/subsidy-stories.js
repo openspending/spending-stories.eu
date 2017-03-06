@@ -260,6 +260,7 @@ function getTopBeneficiaries(countryCode, periods) {
 
 module.exports.availableVisualizations = config.visualizations;
 module.exports.availablePeriods = availablePeriods;
+module.exports.mergePeriods = mergePeriods;
 
 module.exports.getCountryPageUrl = getCountryPageUrl;
 module.exports.navigateToCountryPage = navigateToCountryPage;
