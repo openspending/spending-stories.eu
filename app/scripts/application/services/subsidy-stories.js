@@ -58,13 +58,15 @@ function prepareAPIQueryParams(countryCode, periods) {
       JSON.stringify(countryCode));
   }
   if (_.isArray(periods) && (periods.length > 0)) {
-    query.cut.push(
-      config.api.periodDimension + ':' +
-      _.chain(periods)
-        .map(JSON.stringify)
-        .join(';')
-        .value()
-    );
+    if (periods.length != availablePeriods.length) {
+      query.cut.push(
+        config.api.periodDimension + ':' +
+        _.chain(periods)
+          .map(JSON.stringify)
+          .join(';')
+          .value()
+      );
+    }
   }
   query.cut = query.cut.join('|');
 
@@ -84,8 +86,10 @@ function prepareOSViewerQueryParams(countryCode, periods, visualizationType) {
   }
 
   if (_.isArray(periods) && (periods.length > 0)) {
-    query['filters[' + config.api.periodDimension + '][]'] =
-      _.map(periods, JSON.stringify);
+    if (periods.length != availablePeriods.length) {
+      query['filters[' + config.api.periodDimension + '][]'] =
+        _.map(periods, JSON.stringify);
+    }
   }
 
   var visualizationId = visualizationIds[visualizationType];
