@@ -9,3 +9,5 @@ module.exports.fundingPeriods = require('./funding-periods');
 module.exports.geographicalMap = require('./geographical-map');
 module.exports.topBeneficiaries = require('./top-beneficiaries');
 module.exports.totalSubsidies = require('./total-subsidies');
+module.exports.downloadDataLink = require('./download-data-link');
+module.exports.viewDataLink = require('./view-data-link');

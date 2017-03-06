@@ -5,12 +5,10 @@
   <div class="col-sm-4 col-md-5 col-lg-5 content-header-buttons">
     <ul class="list-inline">
       <li>
-        <a class="btn btn-default" target="_blank"
-          v-bind:href="dataFileUrl">Download</a>
+        <download-data-link class="btn btn-default">Download</download-data-link>
       </li>
       <li>
-        <a id="country-details-link" class="btn btn-default" target="_blank"
-          v-bind:href="detailsUrl">View Details</a>
+        <view-data-link id="country-details-link" class="btn btn-default">View Details</view-data-link>
       </li>
     </ul>
   </div>
