@@ -137,6 +137,7 @@ function navigateToCountryPage(countryCode) {
 }
 
 function getCSVFileUrl(countryCode, periods) {
+  periods = availablePeriods;
   var period = mergePeriods(periods);
   countryCode = _.lowerCase(countryCode);
   return [
