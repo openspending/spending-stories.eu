@@ -6,7 +6,7 @@ var Vuex = require('vuex');
 var subsidyStories = require('./services/subsidy-stories');
 var components = require('./components');
 
-_.each(['downloadDataLink', 'viewDataLink'], function(id) {
+_.each(['dataLink'], function(id) {
   Vue.component(id, components[id]);
 });
 

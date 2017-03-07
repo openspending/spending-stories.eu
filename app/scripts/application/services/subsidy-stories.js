@@ -76,7 +76,7 @@ function prepareAPIQueryParams(countryCode, periods) {
 function prepareOSViewerQueryParams(countryCode, periods, visualizationType) {
   var query = {
     'measure': config.api.measure,
-    'groups[]': config.api.topBeneficiariesDimension,
+    'groups[]': config.api.dimension,
     'order': config.api.measure + '|desc'
   };
 
@@ -137,6 +137,7 @@ function navigateToCountryPage(countryCode) {
 }
 
 function getCSVFileUrl(countryCode, periods) {
+  periods = availablePeriods;
   var period = mergePeriods(periods);
   countryCode = _.lowerCase(countryCode);
   return [
@@ -148,6 +149,17 @@ function getCSVFileUrl(countryCode, periods) {
   ].join('');
 }
 
+function getEntireCSVFileUrl() {
+  var period = mergePeriods(availablePeriods);
+  return [
+    config.api.datastore,
+    '/' + config.api.dataset.split(':')[0],  // owner ID
+    '/' + config.api.dataset.split(':')[1],  // dataset ID
+    '/data',
+    '/eu-esif-funds-beneficiaries-' + period + '-full.csv'
+  ].join('');
+}
+
 function getCountryDetailsUrl(countryCode, periods) {
   var query = prepareOSViewerQueryParams(countryCode, periods, 'treemap');
   countryCode = _.lowerCase(countryCode);
@@ -155,7 +167,18 @@ function getCountryDetailsUrl(countryCode, periods) {
   return [
     config.osViewerUrl,
     '/' + config.api.dataset.split(':')[0],  // owner ID
-    ':' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full' +
+    ':' + countryCode + '-eu-esif-funds-beneficiaries-2000-2020-full',
+    '?' + prepareQueryString(query)
+  ].join('');
+}
+
+function getFullDatasetUrl(periods) {
+  periods = availablePeriods;
+  var query = prepareOSViewerQueryParams(null, periods, 'treemap');
+
+  return [
+    config.osViewerUrl,
+    '/' + config.api.dataset,
     '?' + prepareQueryString(query)
   ].join('');
 }
@@ -274,7 +297,9 @@ module.exports.getVisualizationUrl = getVisualizationUrl;
 module.exports.getCountryCodeFromUrl = getCountryCodeFromUrl;
 module.exports.getCurrentCountryCode = getCurrentCountryCode;
 module.exports.getCSVFileUrl = getCSVFileUrl;
+module.exports.getEntireCSVFileUrl = getEntireCSVFileUrl;
 module.exports.getCountryDetailsUrl = getCountryDetailsUrl;
+module.exports.getFullDatasetUrl = getFullDatasetUrl;
 module.exports.getCountryDescription = getCountryDescription;
 
 module.exports.getCountries = getCountries;
