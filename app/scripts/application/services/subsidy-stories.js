@@ -172,14 +172,10 @@ function getCountryDetailsUrl(countryCode, periods) {
   ].join('');
 }
 
-function getFullDatasetUrl(periods) {
-  periods = availablePeriods;
-  var query = prepareOSViewerQueryParams(null, periods, 'treemap');
-
+function getFullDatasetUrl() {
   return [
     config.osViewerUrl,
-    '/' + config.api.dataset,
-    '?' + prepareQueryString(query)
+    '/' + config.api.dataset
   ].join('');
 }
 

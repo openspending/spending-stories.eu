@@ -19,10 +19,10 @@ module.exports = {
           return subsidyStories.getCountryDetailsUrl(countryCode, period);
           break;
         case 'download-all':
-          return subsidyStories.getEntireCSVFileUrl(period);
+          return subsidyStories.getEntireCSVFileUrl();
           break;
         case 'view-all':
-          return subsidyStories.getFullDatasetUrl(period);
+          return subsidyStories.getFullDatasetUrl();
           break;
       }
     }
