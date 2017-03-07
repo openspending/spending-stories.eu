@@ -76,7 +76,7 @@ function prepareAPIQueryParams(countryCode, periods) {
 function prepareOSViewerQueryParams(countryCode, periods, visualizationType) {
   var query = {
     'measure': config.api.measure,
-    'groups[]': config.api.topBeneficiariesDimension,
+    'groups[]': config.api.dimension,
     'order': config.api.measure + '|desc'
   };
 
