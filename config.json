@@ -2,20 +2,20 @@
   "api": {
     "datastore": "http://datastore.openspending.org",
     "endpoint": "http://next.openspending.org/api/3",
-    "dataset": "6018ab87076187018fc29c94a68a3cd2:eu-esif-funds-beneficiaries-2000-2020-full",
-    "measure": "amount.sum",
-    "dimension": "recipient_beneficiary_id.beneficiary_id",
-    "countryCodeDimension": "geo_source_beneficiary_country.beneficiary_country_code",
-    "periodDimension": "fin_source_funding_period.funding_period",
-    "totalSubsidiesDimension": "fin_source_funding_period.funding_period",
-    "topBeneficiariesDimension": "recipient_beneficiary_name.beneficiary_name"
+    "dataset": "ba94aabb80080745688ad38ccad9bfea:eu-esif-funds-beneficiaries-2000-2020-full",
+    "measure": "Cost_of_the_project.sum",
+    "dimension": "recipient_Beneficiary_name.Beneficiary_name",
+    "countryCodeDimension": "geo_source_Country_code.Country_code",
+    "periodDimension": "fin_source_Funding_period.Funding_period",
+    "totalSubsidiesDimension": "fin_source_Funding_period.Funding_period",
+    "topBeneficiariesDimension": "recipient_Beneficiary_name.Beneficiary_name"
   },
   "osViewerUrl": "http://next.openspending.org/viewer",
   "visualizations": [
     {
       "type": "treemap",
       "query": {
-        "groups[]": "recipient_beneficiary_name.beneficiary_name",
+        "groups[]": "recipient_Beneficiary_name.Beneficiary_name",
         "lang": "en"
       }
     }
