@@ -51,6 +51,7 @@
     {"name": "Romania", "code": "RO", "iso": "RO"},
     {"name": "Slovakia", "code": "SK", "iso": "SK"},
     {"name": "Slovenia", "code": "SI", "iso": "SI"},
+    {"name": "Spain", "code": "ES", "iso": "ES"},
     {"name": "Sweden", "code": "SE", "iso": "SE"},
     {"name": "United Kingdom", "code": "UK", "iso": "GB"}
   ]
